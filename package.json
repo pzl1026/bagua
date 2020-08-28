@@ -1,0 +1,60 @@
+{
+  "name": "webpack-demo",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch",
+    "start": "webpack-dev-server --open",
+    "build": "webpack"
+  },
+  "workspaces": {
+    "packages": [
+      "basic-host-remote/*",
+      "bi-directional/*",
+      "different-react-versions/*",
+      "self-healing/*",
+      "comprehensive-demo/*",
+      "server-side-rendering/*",
+      "server-side-render-only/*",
+      "dynamic-system-host/*",
+      "shared-context/*",
+      "shared-routing/*",
+      "shared-routes2/*",
+      "typescript/*",
+      "nested/*",
+      "nextjs-sidecar/*",
+      "version-discrepancy/*",
+      "dashboard-example/*",
+      "redux-reducer-injection/*",
+      "angular-universal-ssr/*",
+      "advanced-api/dynamic-remotes/*",
+      "advanced-api/automatic-vendor-sharing/*",
+      "nextjs-bi-directional/*",
+      "vue3-demo/*"
+    ],
+    "nohoist": [
+      "**/svelte",
+      "**/svelte/**",
+      "**/svelte-loader",
+      "**/svelte-loader/**"
+    ]
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "clean-webpack-plugin": "^2.0.2",
+    "css-loader": "^0.28.4",
+    "csv-loader": "^2.1.1",
+    "express": "^4.17.1",
+    "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^2.29.0",
+    "style-loader": "^0.18.2",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-dev-server": "^3.11.0",
+    "xml-loader": "^1.2.1"
+  }
+}

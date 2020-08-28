@@ -1,0 +1,109 @@
+@dynamic-system-host/app1: yarn run v1.22.4
+@dynamic-system-host/app2: yarn run v1.22.4
+@dynamic-system-host/app3: yarn run v1.22.4
+@dynamic-system-host/app1: $ webpack-dev-server
+@dynamic-system-host/app2: $ webpack-dev-server
+@dynamic-system-host/app3: $ webpack-dev-server
+@dynamic-system-host/app1: [34mℹ[39m [90m｢wds｣[39m: Project is running at http://localhost:3001/
+@dynamic-system-host/app1: [34mℹ[39m [90m｢wds｣[39m: webpack output is served from http://localhost:3001/
+@dynamic-system-host/app1: [34mℹ[39m [90m｢wds｣[39m: Content not from webpack is served from /Users/pzl/Documents/pzl/bagua/dynamic-system-host/app1/dist
+@dynamic-system-host/app2: [34mℹ[39m [90m｢wds｣[39m: Project is running at http://localhost:3002/
+@dynamic-system-host/app2: [34mℹ[39m [90m｢wds｣[39m: webpack output is served from http://localhost:3002/
+@dynamic-system-host/app2: [34mℹ[39m [90m｢wds｣[39m: Content not from webpack is served from /Users/pzl/Documents/pzl/bagua/dynamic-system-host/app2/dist
+@dynamic-system-host/app3: [34mℹ[39m [90m｢wds｣[39m: Project is running at http://localhost:3003/
+@dynamic-system-host/app3: [34mℹ[39m [90m｢wds｣[39m: webpack output is served from http://localhost:3003/
+@dynamic-system-host/app3: [34mℹ[39m [90m｢wds｣[39m: Content not from webpack is served from /Users/pzl/Documents/pzl/bagua/dynamic-system-host/app3/dist
+@dynamic-system-host/app1: [34mℹ[39m [90m｢wdm｣[39m: Hash: 36a46bbddd3d0a5419c0
+@dynamic-system-host/app1: Version: webpack 5.0.0-beta.25
+@dynamic-system-host/app1: Time: 1203 ms
+@dynamic-system-host/app1: Built at: 2020-08-27 15:41:49
+@dynamic-system-host/app1: asset index.html 129 bytes [emitted]
+@dynamic-system-host/app1: asset main.js 386 KiB [emitted] (name: main)
+@dynamic-system-host/app1: asset node_modules_object-assign_index_js-node_modules_prop-types_checkPropTypes_js.js 8.5 KiB [emitted]
+@dynamic-system-host/app1: asset src_bootstrap_js.js 7.79 KiB [emitted]
+@dynamic-system-host/app1: asset vendors-node_modules_react-dom_index_js.js 911 KiB [emitted] (id hint: vendors)
+@dynamic-system-host/app1: asset vendors-node_modules_react_index_js.js 65.6 KiB [emitted] (id hint: vendors)
+@dynamic-system-host/app1: Entrypoint main = main.js
+@dynamic-system-host/app1: ./src/index.js 22 bytes [built]
+@dynamic-system-host/app1: ./node_modules/webpack-dev-server/client/index.js?http://localhost:3001 4.29 KiB [built]
+@dynamic-system-host/app1: provide shared module (default) react-dom@16.13.1 = ./node_modules/react-dom/index.js 42 bytes [built]
+@dynamic-system-host/app1: provide shared module (default) react@16.13.1 = ./node_modules/react/index.js 42 bytes [built]
+@dynamic-system-host/app1: ./node_modules/strip-ansi/index.js 161 bytes [built]
+@dynamic-system-host/app1: ./node_modules/webpack-dev-server/client/socket.js 1.53 KiB [built]
+@dynamic-system-host/app1: ./node_modules/webpack-dev-server/client/overlay.js 3.51 KiB [built]
+@dynamic-system-host/app1: ./node_modules/webpack-dev-server/client/utils/log.js 964 bytes [built]
+@dynamic-system-host/app1: ./node_modules/webpack-dev-server/client/utils/sendMessage.js 402 bytes [built]
+@dynamic-system-host/app1: ./node_modules/webpack-dev-server/client/utils/reloadApp.js 1.59 KiB [built]
+@dynamic-system-host/app1: ./node_modules/webpack-dev-server/client/utils/createSocketUrl.js 2.91 KiB [built]
+@dynamic-system-host/app1: ./node_modules/webpack/hot sync nonrecursive ^\.\/log$ 170 bytes [built]
+@dynamic-system-host/app1: ./src/bootstrap.js 181 bytes [built]
+@dynamic-system-host/app1: ./node_modules/react-dom/index.js 1.33 KiB [built]
+@dynamic-system-host/app1: ./node_modules/react/index.js 190 bytes [built]
+@dynamic-system-host/app1:     + 46 hidden modules
+@dynamic-system-host/app1: [34mℹ[39m [90m｢wdm｣[39m: Compiled successfully.
+@dynamic-system-host/app3: [34mℹ[39m [90m｢wdm｣[39m: Hash: 1d30fb6151d8a912870f
+@dynamic-system-host/app3: Version: webpack 5.0.0-beta.25
+@dynamic-system-host/app3: Time: 1563 ms
+@dynamic-system-host/app3: Built at: 2020-08-27 15:41:50
+@dynamic-system-host/app3: asset index.html 173 bytes [emitted]
+@dynamic-system-host/app3: asset main.js 386 KiB [emitted] (name: main)
+@dynamic-system-host/app3: asset node_modules_moment_locale_sync_recursive_.js 16.6 KiB [emitted]
+@dynamic-system-host/app3: asset node_modules_object-assign_index_js-node_modules_prop-types_checkPropTypes_js.js 8.5 KiB [emitted]
+@dynamic-system-host/app3: asset remoteEntry.js 26.5 KiB [emitted] (name: app3)
+@dynamic-system-host/app3: asset src_Widget_js.js 2.92 KiB [emitted]
+@dynamic-system-host/app3: asset src_bootstrap_js.js 6.11 KiB [emitted]
+@dynamic-system-host/app3: asset vendors-node_modules_moment_locale_af_js-node_modules_moment_locale_ar-dz_js-node_modules_mom-57dae3.js 724 KiB [emitted] (id hint: vendors)
+@dynamic-system-host/app3: asset vendors-node_modules_react-dom_index_js.js 911 KiB [emitted] (id hint: vendors)
+@dynamic-system-host/app3: asset vendors-node_modules_react_index_js.js 65.6 KiB [emitted] (id hint: vendors)
+@dynamic-system-host/app3: Entrypoint main = main.js
+@dynamic-system-host/app3: Entrypoint app3 = remoteEntry.js
+@dynamic-system-host/app3: ./src/index.js 22 bytes [built]
+@dynamic-system-host/app3: ./node_modules/webpack-dev-server/client/index.js?http://localhost:3003 4.29 KiB [built]
+@dynamic-system-host/app3: provide shared module (default) moment@2.27.0 = ./node_modules/moment/moment.js 42 bytes [built]
+@dynamic-system-host/app3: provide shared module (default) react-dom@16.13.1 = ./node_modules/react-dom/index.js 42 bytes [built]
+@dynamic-system-host/app3: provide shared module (default) react@16.13.1 = ./node_modules/react/index.js 42 bytes [built]
+@dynamic-system-host/app3: container entry 42 bytes [built]
+@dynamic-system-host/app3: ./node_modules/strip-ansi/index.js 161 bytes [built]
+@dynamic-system-host/app3: ./node_modules/webpack-dev-server/client/socket.js 1.53 KiB [built]
+@dynamic-system-host/app3: ./node_modules/webpack-dev-server/client/overlay.js 3.51 KiB [built]
+@dynamic-system-host/app3: ./node_modules/webpack-dev-server/client/utils/log.js 964 bytes [built]
+@dynamic-system-host/app3: ./node_modules/webpack-dev-server/client/utils/sendMessage.js 402 bytes [built]
+@dynamic-system-host/app3: ./node_modules/webpack-dev-server/client/utils/reloadApp.js 1.59 KiB [built]
+@dynamic-system-host/app3: ./node_modules/webpack-dev-server/client/utils/createSocketUrl.js 2.91 KiB [built]
+@dynamic-system-host/app3: ./node_modules/webpack/hot sync nonrecursive ^\.\/log$ 170 bytes [built]
+@dynamic-system-host/app3: ./src/bootstrap.js 181 bytes [built]
+@dynamic-system-host/app3:     + 197 hidden modules
+@dynamic-system-host/app3: [34mℹ[39m [90m｢wdm｣[39m: Compiled successfully.
+@dynamic-system-host/app2: [34mℹ[39m [90m｢wdm｣[39m: Hash: 1da9d3940c9be7ca9150
+@dynamic-system-host/app2: Version: webpack 5.0.0-beta.25
+@dynamic-system-host/app2: Time: 1764 ms
+@dynamic-system-host/app2: Built at: 2020-08-27 15:41:50
+@dynamic-system-host/app2: asset index.html 173 bytes [emitted]
+@dynamic-system-host/app2: asset main.js 386 KiB [emitted] (name: main)
+@dynamic-system-host/app2: asset node_modules_moment_locale_sync_recursive_.js 16.6 KiB [emitted]
+@dynamic-system-host/app2: asset node_modules_object-assign_index_js-node_modules_prop-types_checkPropTypes_js.js 8.5 KiB [emitted]
+@dynamic-system-host/app2: asset remoteEntry.js 26.5 KiB [emitted] (name: app2)
+@dynamic-system-host/app2: asset src_Widget_js.js 2.61 KiB [emitted]
+@dynamic-system-host/app2: asset src_bootstrap_js.js 5.8 KiB [emitted]
+@dynamic-system-host/app2: asset vendors-node_modules_moment_locale_af_js-node_modules_moment_locale_ar-dz_js-node_modules_mom-57dae3.js 724 KiB [emitted] (id hint: vendors)
+@dynamic-system-host/app2: asset vendors-node_modules_react-dom_index_js.js 911 KiB [emitted] (id hint: vendors)
+@dynamic-system-host/app2: asset vendors-node_modules_react_index_js.js 65.6 KiB [emitted] (id hint: vendors)
+@dynamic-system-host/app2: Entrypoint main = main.js
+@dynamic-system-host/app2: Entrypoint app2 = remoteEntry.js
+@dynamic-system-host/app2: ./src/index.js 22 bytes [built]
+@dynamic-system-host/app2: ./node_modules/webpack-dev-server/client/index.js?http://localhost:3002 4.29 KiB [built]
+@dynamic-system-host/app2: provide shared module (default) moment@2.27.0 = ./node_modules/moment/moment.js 42 bytes [built]
+@dynamic-system-host/app2: provide shared module (default) react-dom@16.13.1 = ./node_modules/react-dom/index.js 42 bytes [built]
+@dynamic-system-host/app2: provide shared module (default) react@16.13.1 = ./node_modules/react/index.js 42 bytes [built]
+@dynamic-system-host/app2: container entry 42 bytes [built]
+@dynamic-system-host/app2: ./node_modules/strip-ansi/index.js 161 bytes [built]
+@dynamic-system-host/app2: ./node_modules/webpack-dev-server/client/socket.js 1.53 KiB [built]
+@dynamic-system-host/app2: ./node_modules/webpack-dev-server/client/overlay.js 3.51 KiB [built]
+@dynamic-system-host/app2: ./node_modules/webpack-dev-server/client/utils/log.js 964 bytes [built]
+@dynamic-system-host/app2: ./node_modules/webpack-dev-server/client/utils/sendMessage.js 402 bytes [built]
+@dynamic-system-host/app2: ./node_modules/webpack-dev-server/client/utils/reloadApp.js 1.59 KiB [built]
+@dynamic-system-host/app2: ./node_modules/webpack-dev-server/client/utils/createSocketUrl.js 2.91 KiB [built]
+@dynamic-system-host/app2: ./node_modules/webpack/hot sync nonrecursive ^\.\/log$ 170 bytes [built]
+@dynamic-system-host/app2: ./src/bootstrap.js 181 bytes [built]
+@dynamic-system-host/app2:     + 197 hidden modules
+@dynamic-system-host/app2: [34mℹ[39m [90m｢wdm｣[39m: Compiled successfully.
