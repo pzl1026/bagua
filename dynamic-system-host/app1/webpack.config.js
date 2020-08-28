@@ -35,6 +35,7 @@ module.exports = {
       name: 'app1',
       remotes: {
         app4: 'app4@http://localhost:3004/remoteEntry.js',
+        app2: 'app2@http://localhost:3002/remoteEntry.js',
       },
       shared: {
         react: { singleton: true },
