@@ -35,7 +35,7 @@ webpackDevServer.addDevServerEntrypoints(config, options);
 const server = new webpackDevServer(compiler, options);
 // Serve the files on port 3000.
 require('./port').then((port) => {
-  let p = port;
+  let p = global.port || port;
   server.listen(p, '', function(res) {
     console.log(`listening on port ${p}!\n`);
   });

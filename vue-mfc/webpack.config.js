@@ -7,7 +7,6 @@ const helper = require('./helper');
 
 module.exports = {
   entry: helper.resolve('./src/index.js'),
-  // entry: './temp/src/index.js',
   mode: 'development',
   // devServer: {
   //   contentBase: path.join(__dirname, 'dist'),
@@ -24,7 +23,7 @@ module.exports = {
     },
   },
   output: {
-    publicPath: 'http://localhost:8091/',
+    publicPath: `http://localhost:${port}/`,
   },
   module: {
     rules: [
@@ -97,15 +96,34 @@ module.exports = {
     ],
   },
   plugins: [
-    new ModuleFederationPlugin({
-      name: 'app4',
-      library: { type: 'var', name: 'app4' },
-      filename: 'remoteEntry.js',
-      exposes: {
-        './Widget': helper.resolve('src/index'),
-      },
-      shared: [{ vue: { singleton: true } }],
-    }),
+    new ModuleFederationPlugin(
+      top
+        ? {
+            name: global.module,
+            filename: 'remoteEntry.js',
+            // exposes: {
+            //   './Widget': helper.resolve('src/index'),
+            // },
+            remotes: {
+              app4: 'app4@http://localhost:3004/remoteEntry.js',
+              app2: 'app2@http://localhost:3002/remoteEntry.js',
+            },
+            shared: {
+              react: { singleton: true },
+              'react-dom': { singleton: true },
+              vue: { singleton: true },
+            },
+          }
+        : {
+            name: global.module,
+            library: { type: 'var', name: global.module },
+            filename: 'remoteEntry.js',
+            exposes: {
+              './Widget': helper.resolve('src/index'),
+            },
+            shared: [{ vue: { singleton: true } }],
+          }
+    ),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       template: helper.resolve('./index.html'),

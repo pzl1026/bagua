@@ -12,7 +12,7 @@
     "vue-template-compiler": "^2.6.12"
   },
   "scripts": {
-    "start": "bagua2 -d test",
+    "start": "bagua2 -d test -m app4 -p 3004",
     "build": "webpack --mode production",
     "serve": "serve dist -p 3002",
     "clean": "rm -rf dist"

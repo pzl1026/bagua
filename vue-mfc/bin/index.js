@@ -18,9 +18,11 @@ global.analyzer = program.analyzer;
 //   const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
 //   global.smp = new SpeedMeasurePlugin();
 // }
-
 if (program.devConf) {
   // global.confFile = po.devConf;
+  global.module = po.module;
+  global.port = po.port;
+  global.top = po.top;
   require('../server');
 }
 
@@ -64,7 +66,7 @@ if (program.buildConf) {
   });
 }
 // console.log(program.create, 'program.create')
-if (program.projectName) {
+if (program.createProjectName) {
   global.projectName = program.projectName || 'myproject';
   require('../repo');
 }
