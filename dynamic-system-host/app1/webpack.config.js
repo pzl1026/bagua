@@ -34,7 +34,7 @@ module.exports = {
     new ModuleFederationPlugin({
       name: 'app1',
       remotes: {
-        app4: 'app4@http://localhost:3004/remoteEntry.js',
+        app4: 'app4@http://localhost:8091/remoteEntry.js',
         app2: 'app2@http://localhost:3002/remoteEntry.js',
       },
       shared: {

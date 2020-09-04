@@ -3,15 +3,17 @@ const ModuleFederationPlugin = require('webpack').container
   .ModuleFederationPlugin;
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const CWD = process.cwd();
+const helper = require('./helper');
 
 module.exports = {
-  entry: './src/index',
+  entry: helper.resolve('./src/index.js'),
+  // entry: './temp/src/index.js',
   mode: 'development',
-  devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    port: 3002,
-  },
+  // devServer: {
+  //   contentBase: path.join(__dirname, 'dist'),
+  //   port: 3005,
+  //   open: true,
+  // },
   resolve: {
     modules: ['node_modules'],
     extensions: ['.js', '.jsx', '.vue', '.ts', 'tsx'],
@@ -22,7 +24,7 @@ module.exports = {
     },
   },
   output: {
-    publicPath: 'http://localhost:3002/',
+    publicPath: 'http://localhost:8091/',
   },
   module: {
     rules: [
@@ -96,19 +98,17 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'app2',
+      name: 'app4',
+      library: { type: 'var', name: 'app4' },
       filename: 'remoteEntry.js',
       exposes: {
-        './Widget': './src/index',
+        './Widget': helper.resolve('src/index'),
       },
-      shared: [
-        { react: { singleton: true }, 'react-dom': { singleton: true } },
-        'moment',
-      ],
+      shared: [{ vue: { singleton: true } }],
     }),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
-      template: './index.html',
+      template: helper.resolve('./index.html'),
     }),
   ],
 };

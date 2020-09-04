@@ -1,7 +1,11 @@
 {
-  "name": "@dynamic-system-host/app4",
+  "name": "@dynamic-system-host/app5",
   "version": "0.0.1",
   "private": true,
+  "author": "pzl",
+  "bin": {
+    "bagua2": "bin/index.js"
+  },
   "devDependencies": {
     "@babel/core": "7.11.4",
     "@babel/plugin-proposal-function-bind": "^7.10.5",
@@ -18,7 +22,6 @@
   },
   "scripts": {
     "dev": "node ../bin/index.js -d test",
-    "start": "webpack-dev-server",
     "build": "webpack --mode production",
     "serve": "serve dist -p 3002",
     "clean": "rm -rf dist"
@@ -33,6 +36,8 @@
     "file-loader": "^6.0.0",
     "install": "^0.13.0",
     "moment": "^2.27.0",
+    "ora": "^5.0.0",
+    "portfinder": "^1.0.28",
     "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
     "postcss-url": "^8.0.0",

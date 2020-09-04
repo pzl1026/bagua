@@ -1,5 +1,5 @@
 {
-  "name": "@dynamic-system-host/app2",
+  "name": "@dynamic-system-host/app4",
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
@@ -7,7 +7,6 @@
     "@babel/plugin-proposal-function-bind": "^7.10.5",
     "@babel/plugin-transform-runtime": "^7.11.0",
     "@babel/preset-env": "^7.11.0",
-    "@babel/preset-react": "7.10.4",
     "@babel/preset-stage-0": "^7.8.3",
     "babel-loader": "8.1.0",
     "html-webpack-plugin": "git://github.com/ScriptedAlchemy/html-webpack-plugin#master",
@@ -15,20 +14,21 @@
     "vue-template-compiler": "^2.6.12",
     "webpack": "5.0.0-beta.25",
     "webpack-cli": "3.3.12",
-    "webpack-dev-server": "3.11.0"
+    "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
+    "dev": "bagua -d test",
     "start": "webpack-dev-server",
     "build": "webpack --mode production",
     "serve": "serve dist -p 3002",
     "clean": "rm -rf dist"
   },
   "dependencies": {
+    "@babel/preset-react": "^7.10.4",
     "babel-plugin-jsx-v-model": "^2.0.3",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-plugin-transform-vue-jsx": "^3.7.0",
     "babel-preset-env": "^1.7.0",
-    "babel-preset-stage-2": "^6.24.1",
     "css-loader": "^4.2.2",
     "file-loader": "^6.0.0",
     "install": "^0.13.0",
@@ -43,6 +43,8 @@
     "vue": "^2.6.12",
     "vue-loader": "^15.9.3",
     "vue-router": "^3.4.3",
-    "vue-style-loader": "^4.1.2"
+    "vue-style-loader": "^4.1.2",
+    "webpack-api-mocker": "^1.7.6",
+    "webpack-merge": "^5.1.3"
   }
 }
