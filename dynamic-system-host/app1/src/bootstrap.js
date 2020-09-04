@@ -1,6 +1,10 @@
 setTimeout(() => {
   // loadComponent(aa.app4.scope, aa.app4.module, 'vue')();
-  import('app4/Widget');
+  import('app3/Widget');
+
+  setTimeout(() => {
+    import('app4/Widget');
+  }, 2000);
 }, 2000);
 import('app2/Widget');
 // import App from './App';
