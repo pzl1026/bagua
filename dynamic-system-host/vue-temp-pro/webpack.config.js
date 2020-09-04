@@ -3,15 +3,18 @@ const ModuleFederationPlugin = require('webpack').container
   .ModuleFederationPlugin;
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const CWD = process.cwd();
 
+const helper = require('./helper');
+console.log(__dirname, helper.resolve('src/index'), '__dirname22');
 module.exports = {
-  entry: './src/index',
+  entry: helper.resolve('./src/index.js'),
+  // entry: './temp/src/index.js',
   mode: 'development',
-  devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    port: 3004,
-  },
+  // devServer: {
+  //   contentBase: path.join(__dirname, 'dist'),
+  //   port: 3005,
+  //   open: true,
+  // },
   resolve: {
     modules: ['node_modules'],
     extensions: ['.js', '.jsx', '.vue', '.ts', 'tsx'],
@@ -22,17 +25,17 @@ module.exports = {
     },
   },
   output: {
-    publicPath: 'http://localhost:3004/',
+    publicPath: 'http://localhost:8091/',
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
-        // exclude: /node_modules/,
-        // options: {
-        //   presets: ['@babel/preset-react'],
-        // },
+        exclude: /node_modules/,
+        options: {
+          presets: ['@babel/preset-react'],
+        },
       },
       {
         test: /\.vue$/,
@@ -100,13 +103,13 @@ module.exports = {
       library: { type: 'var', name: 'app4' },
       filename: 'remoteEntry.js',
       exposes: {
-        './Widget': './src/index',
+        './Widget': helper.resolve('src/index'),
       },
       shared: [{ vue: { singleton: true } }],
     }),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
-      template: './index.html',
+      template: helper.resolve('./index.html'),
     }),
   ],
 };

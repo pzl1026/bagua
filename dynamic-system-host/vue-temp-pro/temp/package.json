@@ -2,10 +2,6 @@
   "name": "@dynamic-system-host/app4",
   "version": "0.0.1",
   "private": true,
-  "author": "pzl",
-  "bin": {
-    "bagua": "bin/index.js"
-  },
   "devDependencies": {
     "@babel/core": "7.11.4",
     "@babel/plugin-proposal-function-bind": "^7.10.5",
@@ -37,8 +33,6 @@
     "file-loader": "^6.0.0",
     "install": "^0.13.0",
     "moment": "^2.27.0",
-    "ora": "^5.0.0",
-    "portfinder": "^1.0.28",
     "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
     "postcss-url": "^8.0.0",
