@@ -13,8 +13,8 @@
     "webpack-dev-server": "3.11.0"
   },
   "scripts": {
-    "start": "bagua2 -d test -m app3 -p 3003",
-    "build": "webpack --mode production",
+    "start": "bagua2 -d test",
+    "build": "bagua2 -b test",
     "serve": "serve dist -p 3003",
     "clean": "rm -rf dist"
   },

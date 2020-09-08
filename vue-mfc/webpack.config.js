@@ -23,7 +23,7 @@ module.exports = {
     },
   },
   output: {
-    publicPath: `http://localhost:${port}/`,
+    publicPath: bgWpConfig.output.publicPath,
   },
   module: {
     rules: [
@@ -97,9 +97,9 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin(
-      top
+      bgCustomConfig.isTop
         ? {
-            name: global.module,
+            name: global.name,
             filename: 'remoteEntry.js',
             // exposes: {
             //   './Widget': helper.resolve('src/index'),
@@ -116,8 +116,8 @@ module.exports = {
             },
           }
         : {
-            name: global.module,
-            library: { type: 'var', name: global.module },
+            name: bgCustomConfig.name,
+            library: { type: 'var', name: bgCustomConfig.name },
             filename: 'remoteEntry.js',
             exposes: {
               './Widget': helper.resolve('src/index'),

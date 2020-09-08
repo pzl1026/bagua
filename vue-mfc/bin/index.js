@@ -11,6 +11,10 @@ const program = require('./program');
 const po = program.opts();
 const ora = require('ora');
 // global.smp = null;
+const helper = require('../helper');
+const baguaObj = require(helper.resolve('.bagua.js'));
+bgWpConfig = helper.getWpConfig(baguaObj);
+bgCustomConfig = helper.getCustomConfig(baguaObj);
 
 global.analyzer = program.analyzer;
 
@@ -20,15 +24,12 @@ global.analyzer = program.analyzer;
 // }
 if (program.devConf) {
   // global.confFile = po.devConf;
-  global.module = po.module;
-  global.port = po.port;
-  global.top = po.top;
   require('../server');
 }
 
 if (program.buildConf) {
   global.confFile = po.buildConf;
-  const configs = require('../webpack.prod');
+  const configs = require('../webpack.config');
   const spinner = ora('building for production...');
   spinner.start();
   const compiler = webpack(configs, (err, stats) => {

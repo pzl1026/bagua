@@ -34,13 +34,13 @@ const options = {
 webpackDevServer.addDevServerEntrypoints(config, options);
 const server = new webpackDevServer(compiler, options);
 // Serve the files on port 3000.
-require('./port').then((port) => {
-  let p = global.port || port;
-  server.listen(p, '', function(res) {
-    console.log(`listening on port ${p}!\n`);
-  });
-});
-
-// server.listen('3004', '', function(res) {
-//   console.log(`listening on port 3004!\n`);
+// require('./port').then((port) => {
+//   let p = global.bgCustomConfig.port || port;
+//   server.listen(p, '', function(res) {
+//     console.log(`listening on port ${p}!\n`);
+//   });
 // });
+
+server.listen(bgCustomConfig.port, '', function(res) {
+  console.log(`listening on port ${bgCustomConfig.port}!\n`);
+});

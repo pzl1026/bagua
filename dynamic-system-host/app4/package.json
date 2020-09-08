@@ -9,12 +9,13 @@
     "babel-loader": "8.1.0",
     "babel-preset-env": "^1.7.0",
     "html-webpack-plugin": "git://github.com/ScriptedAlchemy/html-webpack-plugin#master",
+    "serve": "^11.3.2",
     "vue-template-compiler": "^2.6.12"
   },
   "scripts": {
-    "start": "bagua2 -d test -m app4 -p 3004",
-    "build": "webpack --mode production",
-    "serve": "serve dist -p 3002",
+    "start": "bagua2 -d test",
+    "build": "bagua2 -b test",
+    "serve": "serve dist -p 3004",
     "clean": "rm -rf dist"
   },
   "dependencies": {
