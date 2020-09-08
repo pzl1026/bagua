@@ -7,9 +7,8 @@ program
   .option('-d, --dev-conf <confFile>', 'server starting')
   .option('-b, --build-conf <confFile>', 'project compiling')
   .option('-a, --analyzer', 'build analyzer')
-  .option('-m, --module <name>', 'module name')
-  .option('-ls, --lernastart', 'lerna start')
-  .option('-lb, --lernabuild', 'lerna build')
+  .option('-s, --lernaStart', 'lerna start')
+  .option('-p, --lernaBuildProduction', 'lerna build production')
   .version(packageData.version);
 
 program.parse(process.argv);

@@ -1,16 +1,13 @@
 {
   "private": true,
   "scripts": {
-    "start": "lerna run --scope @packages/* --parallel start",
+    "start": "bagua2 -s",
     "build": "lerna run --scope @packages/* build",
     "serve": "lerna run --scope @packages/* --parallel serve",
     "clean": "lerna run --scope @packages/* --parallel clean"
   },
   "devDependencies": {
     "lerna": "3.22.1"
-  },
-  "dependencies": {
-    "vue-loader": "^15.9.3"
   },
   "workspaces": [
     "./*"

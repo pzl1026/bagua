@@ -21,7 +21,7 @@ const options = {
   },
   hot: true,
   compress: true,
-  open: true,
+  open: bgCustomConfig.isTop,
   overlay: true,
   // progress: true,
   publicPath: '/',

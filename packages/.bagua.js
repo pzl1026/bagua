@@ -1,5 +1,5 @@
 module.exports = {
-  packageScope: '@dynamic-system-host',
+  packageScope: '@packages',
   model: '*',
   isProd: false,
 };
