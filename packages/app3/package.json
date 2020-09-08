@@ -1,5 +1,5 @@
 {
-  "name": "@dynamic-system-host/app2",
+  "name": "@packages/app3",
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
@@ -15,12 +15,14 @@
   "scripts": {
     "start": "bagua2 -d test",
     "build": "bagua2 -b test",
-    "serve": "serve dist -p 3002",
+    "serve": "serve dist -p 3003",
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "moment": "^2.27.0",
+    "moment": "^2.24.0",
     "react": "^16.13.0",
-    "react-dom": "^16.13.0"
+    "react-dom": "^16.13.0",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5"
   }
 }

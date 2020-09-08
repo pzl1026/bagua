@@ -2,12 +2,12 @@
 
 const pa = process.argv;
 const argv = pa[pa.length - 1];
+program = require('./program');
 const { spawn, fork } = require('child_process');
 const path = require('path');
 const webpack = require('webpack');
 const chalk = require('chalk');
 const CWD = process.cwd();
-const program = require('./program');
 const po = program.opts();
 const ora = require('ora');
 // global.smp = null;
@@ -17,6 +17,11 @@ bgWpConfig = helper.getWpConfig(baguaObj);
 bgCustomConfig = helper.getCustomConfig(baguaObj);
 
 global.analyzer = program.analyzer;
+
+// if (bgCustomConfig.packageScope) {
+//   require('../lerna');
+//   return;
+// }
 
 // if (program.speed) {
 //   const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');

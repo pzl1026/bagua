@@ -1,5 +1,5 @@
 {
-  "name": "@dynamic-system-host/app4",
+  "name": "@packages/app4",
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
@@ -8,9 +8,11 @@
     "@babel/preset-env": "^7.11.0",
     "babel-loader": "8.1.0",
     "babel-preset-env": "^1.7.0",
+    "css-loader": "^4.2.2",
     "html-webpack-plugin": "git://github.com/ScriptedAlchemy/html-webpack-plugin#master",
     "serve": "^11.3.2",
-    "vue-template-compiler": "^2.6.12"
+    "vue-template-compiler": "^2.6.12",
+    "webpack": "^5.0.0-beta.25"
   },
   "scripts": {
     "start": "bagua2 -d test",
@@ -20,6 +22,7 @@
   },
   "dependencies": {
     "@babel/preset-react": "^7.10.4",
+    "autoprefixer": "^9.8.6",
     "babel-plugin-jsx-v-model": "^2.0.3",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-plugin-transform-vue-jsx": "^3.7.0",

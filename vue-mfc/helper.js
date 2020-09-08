@@ -1,6 +1,14 @@
 const path = require('path');
 const CWD = process.cwd();
-const noWpConfig = ['name', 'isTop', 'domains', 'nomocker', 'port'];
+const noWpConfig = [
+  'name',
+  'isTop',
+  'domains',
+  'nomocker',
+  'port',
+  'packageScope',
+  'model',
+];
 
 function resolve(dir) {
   return path.join(process.cwd(), dir || '');

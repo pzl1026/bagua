@@ -8,8 +8,8 @@ program
   .option('-b, --build-conf <confFile>', 'project compiling')
   .option('-a, --analyzer', 'build analyzer')
   .option('-m, --module <name>', 'module name')
-  .option('-p, --port <port>', 'port')
-  .option('-t, --top', 'main common')
+  .option('-ls, --lernastart', 'lerna start')
+  .option('-lb, --lernabuild', 'lerna build')
   .version(packageData.version);
 
 program.parse(process.argv);
