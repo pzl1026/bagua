@@ -1,16 +1,19 @@
-const path = require('path');
 const webpack = require('webpack');
 const chalk = require('chalk');
-const CWD = process.cwd();
 const po = program.opts();
 const ora = require('ora');
 
 if (program.devConf) {
   // global.confFile = po.devConf;
+  bgWpConfig = helper.getWpConfig(baguaObj, 'dev');
+  bgCustomConfig = helper.getCustomConfig(baguaObj, 'dev');
   require('../server');
 }
 
 if (program.buildConf) {
+  bgWpConfig = helper.getWpConfig(baguaObj, 'prod');
+  bgCustomConfig = helper.getCustomConfig(baguaObj, 'prod');
+
   global.confFile = po.buildConf;
   const configs = require('../webpack.config');
   const spinner = ora('building for production...');

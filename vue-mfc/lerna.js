@@ -1,9 +1,9 @@
 const fs = require('fs');
-console.log('启动API自动生成命令成功...2');
 const { spawn } = require('child_process');
 const { type } = require('os');
 const helper = require('./helper');
 
+console.log('正在启动项目....');
 fs.readdir(
   helper.resolve(),
   {

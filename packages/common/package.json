@@ -1,5 +1,5 @@
 {
-  "name": "@packages/app1",
+  "name": "@packages/common",
   "version": "0.0.1",
   "private": true,
   "devDependencies": {

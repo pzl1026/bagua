@@ -1,5 +1,5 @@
 {
-  "name": "@packages/app4",
+  "name": "@packages/vue",
   "version": "0.0.1",
   "private": true,
   "devDependencies": {

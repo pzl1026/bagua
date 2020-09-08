@@ -35,24 +35,44 @@ function getPublicPathAndBase(outPublicPath) {
 }
 
 // 从.bagua.js获取原始的webpack配置
-function getWpConfig(baguaObj) {
+function getWpConfig(baguaObj, env) {
   let o = {};
+
   for (let i in baguaObj) {
     if (!noWpConfig.includes(i)) {
       o[i] = baguaObj[i];
     }
   }
+
+  if (env) {
+    for (let i in baguaObj[env]) {
+      if (!noWpConfig.includes(i)) {
+        o[i] = baguaObj[env][i];
+      }
+    }
+  }
+
   return o;
 }
 
 // 从.bagua.js获取自定义配置
-function getCustomConfig(baguaObj) {
+function getCustomConfig(baguaObj, env) {
   let o = {};
+
   for (let i in baguaObj) {
     if (noWpConfig.includes(i)) {
       o[i] = baguaObj[i];
     }
   }
+
+  if (env) {
+    for (let i in baguaObj[env]) {
+      if (noWpConfig.includes(i)) {
+        o[i] = baguaObj[env][i];
+      }
+    }
+  }
+
   return o;
 }
 

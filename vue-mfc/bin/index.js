@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
 program = require('./program');
-const helper = require('../helper');
-const baguaObj = require(helper.resolve('.bagua.js'));
-bgWpConfig = helper.getWpConfig(baguaObj);
+helper = require('../helper');
+baguaObj = require(helper.resolve('.bagua.js'));
 bgCustomConfig = helper.getCustomConfig(baguaObj);
 
 if (bgCustomConfig.packageScope) {
+  bgWpConfig = helper.getWpConfig(baguaObj);
   require('./projectController');
 } else {
   require('./modelController');
