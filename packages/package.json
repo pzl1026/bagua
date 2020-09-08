@@ -1,9 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "start": "bagua2 -s",
+    "start": "bagua -s",
     "build": "lerna run --scope @packages/* build",
-    "build2": "bagua2 -p",
+    "build2": "bagua -p",
     "serve": "lerna run --scope @packages/* --parallel serve",
     "clean": "lerna run --scope @packages/* --parallel clean"
   },

@@ -51,6 +51,8 @@ function getConfig(
       o[i] = baguaObj[i];
     }
   }
+
+  if (!baguaObj[env]) return o;
   let domainEnvConfig = baguaObj[env][domainEnv];
   for (let i in domainEnvConfig) {
     if (isWebpackConfig ? !noWpConfig.includes(i) : noWpConfig.includes(i)) {

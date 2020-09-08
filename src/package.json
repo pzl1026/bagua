@@ -4,7 +4,7 @@
   "private": true,
   "author": "pzl",
   "bin": {
-    "bagua2": "bin/index.js"
+    "bagua": "bin/index.js"
   },
   "devDependencies": {
     "@babel/core": "7.11.4",
