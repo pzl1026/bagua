@@ -1,34 +1,38 @@
 module.exports = {
   name: 'vue',
+  isTop: false,
   dev: {
-    isTop: false,
-    port: '3003',
-    domains: {
-      st: {
-        '/api': 'http://st1-manage.mingqijia.com/',
+    st1: {
+      port: '3003',
+      nomocker: false,
+      devServer: {
+        proxy: {
+          '/api': {
+            target: 'http://st1-api.mingqijia.com/',
+            changeOrigin: true,
+          },
+        },
       },
-      pre: {
-        '/api': 'http://pre-manage.mingqijia.com/',
-      },
-      prod: {
-        '/api': 'http://manage.towngasvcc.com/',
+      output: {
+        publicPath: '//localhost:3003/',
       },
     },
-    nomocker: false,
-    output: {
-      publicPath: '//localhost:3003/',
+    default: {
+      port: '3003',
+      nomocker: false,
+      devServer: {
+        proxy: {
+          '/api': {
+            target: 'http://st1-api.mingqijia.com/',
+            changeOrigin: true,
+          },
+        },
+      },
+      output: {
+        publicPath: '//localhost:3003/',
+      },
     },
   },
-
-  // devServer: {
-  //   proxy: {
-  //     '/api': {
-  //       target: 'http://st1-api.mingqijia.com/',
-  //       changeOrigin: true,
-  //     },
-  //   },
-  // },
-
   prod: {
     st1: {
       output: {

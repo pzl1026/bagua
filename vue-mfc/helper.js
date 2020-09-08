@@ -8,6 +8,8 @@ const noWpConfig = [
   'port',
   'packageScope',
   'model',
+  'dev',
+  'prod',
 ];
 
 function resolve(dir) {
@@ -34,46 +36,39 @@ function getPublicPathAndBase(outPublicPath) {
   };
 }
 
-// 从.bagua.js获取原始的webpack配置
-function getWpConfig(baguaObj, env) {
+function getConfig(
+  baguaObj,
+  env = 'dev',
+  domainEnv = 'default',
+  isWebpackConfig
+) {
   let o = {};
-
   for (let i in baguaObj) {
-    if (!noWpConfig.includes(i)) {
+    if (
+      (isWebpackConfig ? !noWpConfig.includes(i) : noWpConfig.includes(i)) &&
+      !['dev', 'prod'].includes(i)
+    ) {
       o[i] = baguaObj[i];
     }
   }
-
-  if (env) {
-    for (let i in baguaObj[env]) {
-      if (!noWpConfig.includes(i)) {
-        o[i] = baguaObj[env][i];
-      }
+  let domainEnvConfig = baguaObj[env][domainEnv];
+  for (let i in domainEnvConfig) {
+    if (isWebpackConfig ? !noWpConfig.includes(i) : noWpConfig.includes(i)) {
+      o[i] = domainEnvConfig[i];
     }
   }
 
   return o;
 }
 
+// 从.bagua.js获取原始的webpack配置
+function getWpConfig(baguaObj, env, domainEnv) {
+  return getConfig(baguaObj, env, domainEnv, true);
+}
+
 // 从.bagua.js获取自定义配置
-function getCustomConfig(baguaObj, env) {
-  let o = {};
-
-  for (let i in baguaObj) {
-    if (noWpConfig.includes(i)) {
-      o[i] = baguaObj[i];
-    }
-  }
-
-  if (env) {
-    for (let i in baguaObj[env]) {
-      if (noWpConfig.includes(i)) {
-        o[i] = baguaObj[env][i];
-      }
-    }
-  }
-
-  return o;
+function getCustomConfig(baguaObj, env, domainEnv) {
+  return getConfig(baguaObj, env, domainEnv, false);
 }
 
 // 显示进度

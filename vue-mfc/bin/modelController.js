@@ -2,17 +2,36 @@ const webpack = require('webpack');
 const chalk = require('chalk');
 const po = program.opts();
 const ora = require('ora');
+domainEnv = program.devConf || program.buildConf || 'default';
 
 if (program.devConf) {
   // global.confFile = po.devConf;
-  bgWpConfig = helper.getWpConfig(baguaObj, 'dev');
-  bgCustomConfig = helper.getCustomConfig(baguaObj, 'dev');
+  isDev = true;
+  bgWpConfig = helper.getWpConfig(
+    baguaObj,
+    'dev',
+    domainEnv === true ? 'default' : domainEnv
+  );
+  bgCustomConfig = helper.getCustomConfig(
+    baguaObj,
+    'dev',
+    domainEnv === true ? 'default' : domainEnv
+  );
   require('../server');
 }
 
 if (program.buildConf) {
-  bgWpConfig = helper.getWpConfig(baguaObj, 'prod');
-  bgCustomConfig = helper.getCustomConfig(baguaObj, 'prod');
+  isDev = false;
+  bgWpConfig = helper.getWpConfig(
+    baguaObj,
+    'prod',
+    domainEnv === 'true' ? 'default' : domainEnv
+  );
+  bgCustomConfig = helper.getCustomConfig(
+    baguaObj,
+    'prod',
+    domainEnv === 'true' ? 'default' : domainEnv
+  );
 
   global.confFile = po.buildConf;
   const configs = require('../webpack.config');

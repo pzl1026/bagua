@@ -15,8 +15,8 @@
     "webpack": "^5.0.0-beta.25"
   },
   "scripts": {
-    "start": "bagua2 -d test",
-    "build": "bagua2 -b test",
+    "start": "bagua2 -d st1",
+    "build": "bagua2 -b st1",
     "serve": "serve dist -p 3004",
     "clean": "rm -rf dist"
   },
