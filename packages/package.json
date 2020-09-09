@@ -5,10 +5,12 @@
     "build": "lerna run --scope @packages/* build",
     "build2": "bagua -p",
     "serve": "lerna run --scope @packages/* --parallel serve",
+    "serve2": "serve dist -p 3001",
     "clean": "lerna run --scope @packages/* --parallel clean"
   },
   "devDependencies": {
-    "lerna": "3.22.1"
+    "lerna": "3.22.1",
+    "serve": "^11.3.2"
   },
   "workspaces": [
     "./*"

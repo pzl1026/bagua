@@ -1,9 +1,9 @@
 module.exports = {
-  name: 'react',
+  name: 'app2',
   isTop: false,
   dev: {
     st1: {
-      port: '3002',
+      port: '3001',
       nomocker: false,
       devServer: {
         proxy: {
@@ -14,7 +14,7 @@ module.exports = {
         },
       },
       output: {
-        publicPath: '//localhost:3002/',
+        publicPath: '//localhost:3001/',
       },
     },
     default: {
@@ -29,14 +29,14 @@ module.exports = {
         },
       },
       output: {
-        publicPath: '//localhost:3002/',
+        publicPath: '//localhost:3001/',
       },
     },
   },
   prod: {
     st1: {
       output: {
-        publicPath: '//localhost:3002/',
+        publicPath: '//localhost:3001/',
       },
     },
     default: {

@@ -4,6 +4,7 @@ const ModuleFederationPlugin = require('webpack').container
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const helper = require('./helper');
+const timerHash = new Date().valueOf();
 
 module.exports = {
   entry: helper.resolve('./src/index.js'),
@@ -22,9 +23,17 @@ module.exports = {
       '@': './src',
     },
   },
-  output: {
-    publicPath: bgWpConfig.output.publicPath,
-  },
+  output: !isDev
+    ? {
+        path: helper.resolve(
+          `../dist${!bgCustomConfig.isTop ? '/' + bgCustomConfig.name : ''}`
+        ),
+        publicPath: bgWpConfig.output.publicPath,
+        filename: `${
+          bgCustomConfig.isTop ? bgCustomConfig.name + '/' : ''
+        }js/app.${timerHash}.js`,
+      }
+    : {},
   module: {
     rules: [
       {
@@ -100,13 +109,13 @@ module.exports = {
       bgCustomConfig.isTop
         ? {
             name: global.name,
-            filename: 'remoteEntry.js',
+            filename: 'js/remoteEntry.js',
             // exposes: {
             //   './Widget': helper.resolve('src/index'),
             // },
             remotes: {
-              app3: 'vue@http://localhost:3003/remoteEntry.js',
-              app2: 'react@http://localhost:3002/remoteEntry.js',
+              app3: 'app3@http://localhost:3001/app3/js/remoteEntry.js',
+              app2: 'app2@http://localhost:3001/app2/js/remoteEntry.js',
             },
             shared: {
               react: { singleton: true },
@@ -117,7 +126,7 @@ module.exports = {
         : {
             name: bgCustomConfig.name,
             library: { type: 'var', name: bgCustomConfig.name },
-            filename: 'remoteEntry.js',
+            filename: `js/remoteEntry.js`,
             exposes: {
               './Widget': helper.resolve('src/index'),
             },
