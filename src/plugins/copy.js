@@ -9,20 +9,20 @@ function Copy(options) {
   this.options = options;
 }
 
-Copy.prototype.apply = function(compiler) {
+Copy.prototype.apply = function (compiler) {
   var self = this;
-  var chalk = require('chalk').constructor({ enabled: true });
+  var chalk = require('chalk');
 
-  compiler.hooks.done.tap('copy', function(compilation) {
+  compiler.hooks.done.tap('copy', function (compilation) {
     console.log(chalk.yellow('  Copy start....'));
 
-    self.options.forEach(function(option) {
+    self.options.forEach(function (option) {
       let opts = option.options || {};
       let include = option.include,
         exclude = option.exclude;
 
       if (include || exclude) {
-        opts.filter = function(from) {
+        opts.filter = function (from) {
           from = path.relative(compiler.context, from).replace(/\\+/g, '/');
           if (include) {
             return from.indexOf(include) > -1 || include.indexOf(from) > -1;
@@ -41,12 +41,12 @@ Copy.prototype.apply = function(compiler) {
         path.join(compiler.context, option.to),
         opts
       )
-        .then(function() {
+        .then(function () {
           console.log(
             chalk.blue('    ' + option.from + ' => ' + option.to + ' Complete!')
           );
         })
-        .catch(function() {
+        .catch(function () {
           console.log(
             chalk.red('    ' + option.from + ' => ' + option.to + ' Failure!')
           );

@@ -43,6 +43,7 @@ module.exports = {
     st1: {
       exposes: {
         './Widget': path.resolve(__dirname, 'src/index'),
+        './test': path.resolve(__dirname, 'src/test'),
       },
       output: {
         publicPath: '//localhost:3001/react/',

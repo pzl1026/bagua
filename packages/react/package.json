@@ -1,7 +1,6 @@
 {
   "name": "@packages/react",
   "version": "0.0.1",
-  "private": true,
   "devDependencies": {
     "@babel/core": "7.11.4",
     "@babel/preset-react": "7.10.4",

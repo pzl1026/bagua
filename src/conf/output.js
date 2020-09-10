@@ -1,4 +1,6 @@
 const helper = require('../helper');
+const { v4 } = require('uuid');
+const hash = v4();
 
 module.exports = !isDev
   ? {
