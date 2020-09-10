@@ -3,7 +3,7 @@ module.exports = {
   isTop: false,
   dev: {
     st1: {
-      port: '3001',
+      port: '3002',
       nomocker: false,
       devServer: {
         proxy: {
@@ -14,7 +14,7 @@ module.exports = {
         },
       },
       output: {
-        publicPath: '//localhost:3001/',
+        publicPath: '//localhost:3002/',
       },
     },
     default: {
@@ -29,19 +29,19 @@ module.exports = {
         },
       },
       output: {
-        publicPath: '//localhost:3001/',
+        publicPath: '//localhost:3002/',
       },
     },
   },
   prod: {
     st1: {
       output: {
-        publicPath: '//localhost:3001/',
+        publicPath: '//localhost:3002/',
       },
     },
     default: {
       output: {
-        publicPath: '//localhost:3003/',
+        publicPath: '//localhost:3002/',
       },
     },
   },

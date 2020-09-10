@@ -23,17 +23,20 @@ module.exports = {
       '@': './src',
     },
   },
-  output: !isDev
-    ? {
-        path: helper.resolve(
-          `../dist${!bgCustomConfig.isTop ? '/' + bgCustomConfig.name : ''}`
-        ),
-        publicPath: bgWpConfig.output.publicPath,
-        filename: `${
-          bgCustomConfig.isTop ? bgCustomConfig.name + '/' : ''
-        }js/app.${timerHash}.js`,
-      }
-    : {},
+  // output: !isDev
+  //   ? {
+  //       path: helper.resolve(
+  //         `./dist${!bgCustomConfig.isTop ? '/' + bgCustomConfig.name : ''}`
+  //       ),
+  //       publicPath: bgWpConfig.output.publicPath,
+  //       filename: `${
+  //         bgCustomConfig.isTop ? bgCustomConfig.name + '/' : ''
+  //       }js/app.${timerHash}.js`,
+  //     }
+  //   : {},
+  output: {
+    publicPath: bgWpConfig.output.publicPath,
+  },
   module: {
     rules: [
       {
@@ -114,8 +117,8 @@ module.exports = {
             //   './Widget': helper.resolve('src/index'),
             // },
             remotes: {
-              app3: 'app3@http://localhost:3001/app3/js/remoteEntry.js',
-              app2: 'app2@http://localhost:3001/app2/js/remoteEntry.js',
+              app3: 'app3@http://localhost:3003/app3/js/remoteEntry.js',
+              app2: 'app2@http://localhost:3002/app2/js/remoteEntry.js',
             },
             shared: {
               react: { singleton: true },
