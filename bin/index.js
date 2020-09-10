@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 program = require('./program');
-helper = require('../helper');
+helper = require('../src/helper');
 baguaObj = require(helper.resolve('.bagua.js'));
 bgCustomConfig = helper.getCustomConfig(baguaObj);
 

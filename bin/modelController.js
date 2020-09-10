@@ -17,7 +17,7 @@ if (program.devConf) {
     'dev',
     domainEnv === true ? 'default' : domainEnv
   );
-  require('../server');
+  require('../src/server');
 }
 
 if (program.buildConf) {
@@ -34,7 +34,7 @@ if (program.buildConf) {
   );
 
   global.confFile = po.buildConf;
-  const configs = require('../webpack.config');
+  const configs = require('../src/webpack.config');
   const spinner = ora('building for production...');
   spinner.start();
   const compiler = webpack(configs, (err, stats) => {
@@ -74,5 +74,5 @@ if (program.buildConf) {
 // console.log(program.create, 'program.create')
 if (program.createProjectName) {
   global.projectName = program.projectName || 'myproject';
-  require('../repo');
+  require('../src/repo');
 }
