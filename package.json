@@ -1,9 +1,9 @@
 {
-  "name": "bagua.js",
+  "name": "baguac",
   "version": "0.0.1",
   "author": "pzl",
   "bin": {
-    "bagua": "bin/index.js"
+    "baguac": "bin/index.js"
   },
   "devDependencies": {},
   "scripts": {
