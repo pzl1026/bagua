@@ -23,6 +23,7 @@ module.exports = {
     },
   },
   output: {
+    path: helper.resolve('dist/js/'),
     publicPath: bgWpConfig.output.publicPath,
   },
   module: {

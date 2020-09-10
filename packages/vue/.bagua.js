@@ -36,7 +36,7 @@ module.exports = {
   prod: {
     st1: {
       output: {
-        publicPath: '//localhost:3003/',
+        publicPath: '//localhost:3003/js/',
       },
     },
     default: {
