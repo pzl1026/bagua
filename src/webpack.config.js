@@ -22,10 +22,22 @@ module.exports = {
       '@': './src',
     },
   },
-  output: {
-    path: helper.resolve('dist/js/'),
-    publicPath: bgWpConfig.output.publicPath,
-  },
+  // output: {
+  //   path: helper.resolve('dist/js/'),
+  //   publicPath: bgWpConfig.output.publicPath,
+  // },
+
+  output: !isDev
+    ? {
+        path: helper.resolve(
+          `./dist${!bgCustomConfig.isTop ? '/' + bgCustomConfig.name : ''}`
+        ),
+        publicPath: bgWpConfig.output.publicPath,
+        filename: `${
+          bgCustomConfig.isTop ? bgCustomConfig.name + '/' : ''
+        }js/app.js`,
+      }
+    : {},
   module: {
     rules: [
       {
@@ -106,8 +118,8 @@ module.exports = {
             //   './Widget': helper.resolve('src/index'),
             // },
             remotes: {
-              app3: 'vue@http://localhost:3003/remoteEntry.js',
-              app2: 'react@http://localhost:3002/remoteEntry.js',
+              app3: 'vue@http://localhost:3001/vue/remoteEntry.js',
+              app2: 'react@http://localhost:3001/react/remoteEntry.js',
             },
             shared: {
               react: { singleton: true },

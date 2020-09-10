@@ -17,7 +17,7 @@
   "scripts": {
     "start": "bagua -d st1",
     "build": "bagua -b st1",
-    "serve": "serve dist -p 3004",
+    "serve": "serve dist -p 3003",
     "clean": "rm -rf dist"
   },
   "dependencies": {
