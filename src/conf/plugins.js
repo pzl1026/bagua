@@ -11,9 +11,6 @@ let plugins = [
       ? {
           name: global.name,
           filename: 'remoteEntry.js',
-          // exposes: {
-          //   './Widget': helper.resolve('src/index'),
-          // },
           remotes: bgCustomConfig.remotes,
           shared: {
             react: { singleton: true },

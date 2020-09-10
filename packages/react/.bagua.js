@@ -9,6 +9,7 @@ module.exports = {
       nomocker: false,
       exposes: {
         './Widget': path.resolve(__dirname, 'src/index'),
+        './test': path.resolve(__dirname, 'src/test'),
       },
       devServer: {
         proxy: {
