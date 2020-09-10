@@ -5,6 +5,10 @@ module.exports = {
     st1: {
       port: '3001',
       nomocker: false,
+      remotes: {
+        app3: 'vue@http://localhost:3003/remoteEntry.js',
+        app2: 'react@http://localhost:3002/remoteEntry.js',
+      },
       devServer: {
         proxy: {
           '/api': {
@@ -35,6 +39,10 @@ module.exports = {
   },
   prod: {
     st1: {
+      remotes: {
+        app3: 'vue@http://localhost:3001/vue/remoteEntry.js',
+        app2: 'react@http://localhost:3001/react/remoteEntry.js',
+      },
       output: {
         publicPath: '//localhost:3001/',
       },

@@ -10,6 +10,8 @@ const noWpConfig = [
   'model',
   'dev',
   'prod',
+  'remotes',
+  'exposes',
 ];
 
 function resolve(dir) {

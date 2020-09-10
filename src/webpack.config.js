@@ -1,9 +1,9 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ModuleFederationPlugin = require('webpack').container
-  .ModuleFederationPlugin;
 const path = require('path');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const helper = require('./helper');
+const { v4 } = require('uuid');
+const hash = v4();
+const plugins = require('./conf/plugins');
+const output = require('./conf/output');
 
 module.exports = {
   entry: helper.resolve('./src/index.js'),
@@ -27,17 +27,7 @@ module.exports = {
   //   publicPath: bgWpConfig.output.publicPath,
   // },
 
-  output: !isDev
-    ? {
-        path: helper.resolve(
-          `./dist${!bgCustomConfig.isTop ? '/' + bgCustomConfig.name : ''}`
-        ),
-        publicPath: bgWpConfig.output.publicPath,
-        filename: `${
-          bgCustomConfig.isTop ? bgCustomConfig.name + '/' : ''
-        }js/app.js`,
-      }
-    : {},
+  output,
   module: {
     rules: [
       {
@@ -108,38 +98,5 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new ModuleFederationPlugin(
-      bgCustomConfig.isTop
-        ? {
-            name: global.name,
-            filename: 'remoteEntry.js',
-            // exposes: {
-            //   './Widget': helper.resolve('src/index'),
-            // },
-            remotes: {
-              app3: 'vue@http://localhost:3001/vue/remoteEntry.js',
-              app2: 'react@http://localhost:3001/react/remoteEntry.js',
-            },
-            shared: {
-              react: { singleton: true },
-              'react-dom': { singleton: true },
-              vue: { singleton: true },
-            },
-          }
-        : {
-            name: bgCustomConfig.name,
-            library: { type: 'var', name: bgCustomConfig.name },
-            filename: 'remoteEntry.js',
-            exposes: {
-              './Widget': helper.resolve('src/index'),
-            },
-            shared: [{ vue: { singleton: true } }],
-          }
-    ),
-    new VueLoaderPlugin(),
-    new HtmlWebpackPlugin({
-      template: helper.resolve('./index.html'),
-    }),
-  ],
+  plugins,
 };

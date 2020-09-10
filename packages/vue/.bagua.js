@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   name: 'vue',
   isTop: false,
@@ -5,6 +7,9 @@ module.exports = {
     st1: {
       port: '3003',
       nomocker: false,
+      exposes: {
+        './Widget': path.resolve(__dirname, 'src/index'),
+      },
       devServer: {
         proxy: {
           '/api': {
@@ -35,6 +40,9 @@ module.exports = {
   },
   prod: {
     st1: {
+      exposes: {
+        './Widget': path.resolve(__dirname, 'src/index'),
+      },
       output: {
         publicPath: '//localhost:3001/vue/',
       },
