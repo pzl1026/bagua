@@ -8,30 +8,30 @@ let [type, value] = program.args;
 
 // 创建项目
 function createProject() {
-  const tempDir = 'github:pzl1026/bagua';
+  const tempDir = 'github:pzl1026/bagua-template#master';
   const spinner = ora(chalk.yellow('Create start')).start();
 
-  spinner.color = 'blue';
-  spinner.text = 'Creating project directory...';
+  spinner.color = 'yellow';
+  spinner.text = '开始创建项目...';
 
-  download(tempDir, 'packages', function(err) {
+  download(tempDir, './', function(err) {
     if (err) {
       throw err;
       process.exit();
       return;
     }
-    // fs.rename(helper.resolve('packages'), helper.resolve(value), (err) => {
-    //   if (err) {
-    //     throw err;
-    //     return;
-    //   }
+    fs.rename(helper.resolve('packages'), helper.resolve(value), (err) => {
+      if (err) {
+        throw err;
+        return;
+      }
 
-    spinner.text = chalk.blue('Project directory created successfully');
-    spinner.succeed();
-    spinner.stop();
-    spinner.clear();
-    process.exit();
-    // });
+      spinner.text = chalk.blue('项目目录创建成功！！');
+      spinner.succeed();
+      spinner.stop();
+      spinner.clear();
+      process.exit();
+    });
   });
 }
 

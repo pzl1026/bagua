@@ -8,8 +8,8 @@ if (type == 'create') {
   return;
 }
 
-bgCustomConfig = helper.getCustomConfig(baguaObj);
 baguaObj = require(helper.resolve('.bagua.js'));
+bgCustomConfig = helper.getCustomConfig(baguaObj);
 if (bgCustomConfig.packageScope) {
   bgWpConfig = helper.getWpConfig(baguaObj);
   require('./projectController');
