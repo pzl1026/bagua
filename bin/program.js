@@ -8,6 +8,7 @@ program
   .option('-b, --build-conf [config]', 'project compiling')
   .option('-a, --analyzer', 'build analyzer')
   .option('-s, --lernaStart', 'lerna start')
+  .option('-m, --modelCreate', 'create model')
   .option('-p, --lernaBuildProduction', 'lerna build production')
   .option('-i, --lernaInstall', 'lerna install for packages')
   .version(packageData.version);
