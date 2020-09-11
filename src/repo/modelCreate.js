@@ -43,7 +43,7 @@ function createProject(frame) {
         return;
       }
 
-      spinner.text = chalk.blue('项目目录创建成功！！');
+      spinner.text = chalk.blue('模块目录创建完成！！');
 
       await configChange.handleConfig(
         currentDir + '/.bagua.js',

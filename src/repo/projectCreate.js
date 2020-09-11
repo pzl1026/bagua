@@ -3,6 +3,9 @@ const chalk = require('chalk');
 const ora = require('ora');
 const helper = require('../helper');
 const fs = require('fs');
+const configChange = require('./configChange');
+const install = require('./install');
+const installAll = require('./installAll');
 let [type, value] = program.args;
 
 // 创建项目
@@ -11,7 +14,7 @@ function createProject() {
   const spinner = ora(chalk.yellow('Create start')).start();
 
   spinner.color = 'yellow';
-  spinner.text = '开始创建项目...';
+  spinner.text = chalk.blue('开始创建项目...');
 
   download(tempDir, './', function(err) {
     if (err) {
@@ -19,17 +22,37 @@ function createProject() {
       process.exit();
       return;
     }
-    fs.rename(helper.resolve('packages'), helper.resolve(value), (err) => {
+    let currentDir = helper.resolve(value);
+    fs.rename(helper.resolve('packages'), currentDir, async (err) => {
       if (err) {
         throw err;
+        process.exit();
         return;
       }
+      spinner.text = chalk.blue('模块目录创建完成！！');
+
+      await configChange.handleConfig(
+        currentDir + '/.bagua.js',
+        /(?<=packageScope:\s)(.*)/,
+        `'@${value}',`
+      );
 
       spinner.text = chalk.blue('项目目录创建成功！！');
-      spinner.succeed();
-      spinner.stop();
-      spinner.clear();
-      process.exit();
+      await configChange.handleConfig(
+        currentDir + '/package.json',
+        /(?<=\"name\":\s)(.*)/,
+        `"${value}",`
+      );
+
+      spinner.text = chalk.blue(`正在安装${value}的modules...`);
+      let end = await install(value);
+      let end2 = await installAll(value);
+      if (end && end2) {
+        spinner.succeed();
+        spinner.stop();
+        spinner.clear();
+        process.exit();
+      }
     });
   });
 }
