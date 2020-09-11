@@ -2,9 +2,14 @@
 
 program = require('./program');
 helper = require('../src/helper');
-baguaObj = require(helper.resolve('.bagua.js'));
-bgCustomConfig = helper.getCustomConfig(baguaObj);
+let type = program.args[0];
+if (type == 'create') {
+  require('../src/repo/projectCreate');
+  return;
+}
 
+bgCustomConfig = helper.getCustomConfig(baguaObj);
+baguaObj = require(helper.resolve('.bagua.js'));
 if (bgCustomConfig.packageScope) {
   bgWpConfig = helper.getWpConfig(baguaObj);
   require('./projectController');

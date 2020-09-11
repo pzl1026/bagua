@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "author": "pzl",
   "bin": {
-    "baguac": "bin/index.js"
+    "bagua": "bin/index.js"
   },
   "devDependencies": {},
   "scripts": {
@@ -28,6 +28,7 @@
     "chalk": "^4.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^4.2.2",
+    "download-git-repo": "^3.0.2",
     "file-loader": "^6.0.0",
     "fs-extra": "^9.0.1",
     "html-webpack-plugin": "git://github.com/ScriptedAlchemy/html-webpack-plugin#master",
