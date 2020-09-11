@@ -32,6 +32,7 @@
     "file-loader": "^6.0.0",
     "fs-extra": "^9.0.1",
     "html-webpack-plugin": "git://github.com/ScriptedAlchemy/html-webpack-plugin#master",
+    "inquirer": "^7.3.3",
     "install": "^0.13.0",
     "moment": "^2.27.0",
     "ora": "^5.0.0",

@@ -1,7 +1,6 @@
 const download = require('download-git-repo');
 const chalk = require('chalk');
 const ora = require('ora');
-const program = require('../../bin/program');
 const helper = require('../helper');
 const fs = require('fs');
 let [type, value] = program.args;

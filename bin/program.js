@@ -12,6 +12,7 @@ program
   .option('-p, --lernaBuildProduction', 'lerna build production')
   .option('-i, --lernaInstall', 'lerna install for packages')
   .command('create <source> [destination]')
+  .command('createmodel <source> [destination]')
   .version(packageData.version);
 
 program.parse(process.argv);

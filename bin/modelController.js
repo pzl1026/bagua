@@ -3,12 +3,12 @@ domainEnv = program.devConf || program.buildConf || 'default';
 function getConfig(env) {
   let bgWpConfig = helper.getWpConfig(
     baguaObj,
-    'dev',
+    env,
     domainEnv === true ? 'default' : domainEnv
   );
   let bgCustomConfig = helper.getCustomConfig(
     baguaObj,
-    'dev',
+    env,
     domainEnv === true ? 'default' : domainEnv
   );
 

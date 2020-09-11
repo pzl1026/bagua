@@ -1,36 +1,28 @@
-const fs = require('fs');
 const { spawn } = require('child_process');
 const { type } = require('os');
+const chalk = require('chalk');
 const helper = require('../helper');
 
-fs.readdir(
-  helper.resolve(),
+const packageScope = bgCustomConfig.packageScope || 'package';
+const model = bgCustomConfig.model || '*';
+let action;
+
+if (program.lernaStart) {
+  action = 'start';
+  chalk.yellow('正在启动项目...');
+} else if (program.lernaBuildProduction) {
+  action = 'build';
+  chalk.yellow('正在编译生产项目...');
+}
+
+const subprocess = spawn(
+  `lerna${type == 'Windows_NT' ? '.cmd' : ''}`,
+  ['run', '--scope', `${packageScope}/${model}`, '--parallel', action],
   {
-    recursive: true,
-  },
-  (event, filename) => {
-    const packageScope = bgCustomConfig.packageScope || 'package';
-    const model = bgCustomConfig.model || '*';
-    let action;
-
-    if (program.lernaStart) {
-      action = 'start';
-      console.log('正在启动项目...');
-    } else if (program.lernaBuildProduction) {
-      action = 'build';
-      console.log('正在编译生产项目...');
-    }
-
-    const subprocess = spawn(`lerna${type == 'Windows_NT' ? '.cmd' : ''}`, [
-      'run',
-      '--scope',
-      `${packageScope}/${model}`,
-      '--parallel',
-      action,
-    ]);
-
-    subprocess.stdout.on('data', (data) => {
-      console.log(data.toString());
-    });
+    cwd: helper.resolve(),
   }
 );
+
+subprocess.stdout.on('data', (data) => {
+  console.log(data.toString());
+});

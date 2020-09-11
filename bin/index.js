@@ -8,6 +8,11 @@ if (type == 'create') {
   return;
 }
 
+if (type == 'createmodel') {
+  require('../src/repo/modelCreate');
+  return;
+}
+
 baguaObj = require(helper.resolve('.bagua.js'));
 bgCustomConfig = helper.getCustomConfig(baguaObj);
 if (bgCustomConfig.packageScope) {
