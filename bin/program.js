@@ -9,6 +9,7 @@ program
   .option('-a, --analyzer', 'build analyzer')
   .option('-s, --lernaStart', 'lerna start')
   .option('-p, --lernaBuildProduction', 'lerna build production')
+  .option('-i, --lernaInstall', 'lerna install for packages')
   .version(packageData.version);
 
 program.parse(process.argv);

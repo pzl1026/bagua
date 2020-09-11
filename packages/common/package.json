@@ -12,7 +12,8 @@
     "start": "bagua -d st1",
     "build": "bagua -b st1",
     "serve": "serve dist -p 3001",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "add": "npm i && npm fund"
   },
   "dependencies": {
     "react": "^16.13.0",

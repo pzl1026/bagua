@@ -6,7 +6,8 @@
     "build2": "bagua -p",
     "serve2": "lerna run --scope @packages/* --parallel serve",
     "serve": "serve dist -p 3001",
-    "clean": "lerna run --scope @packages/* --parallel clean"
+    "clean": "lerna run --scope @packages/* --parallel clean",
+    "add": "bagua -i"
   },
   "devDependencies": {
     "lerna": "3.22.1",

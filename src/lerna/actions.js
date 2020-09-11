@@ -1,7 +1,7 @@
 const fs = require('fs');
 const { spawn } = require('child_process');
 const { type } = require('os');
-const helper = require('./helper');
+const helper = require('../helper');
 
 fs.readdir(
   helper.resolve(),
@@ -16,12 +16,12 @@ fs.readdir(
     if (program.lernaStart) {
       action = 'start';
       console.log('正在启动项目...');
-    } else {
+    } else if (program.lernaBuildProduction) {
       action = 'build';
       console.log('正在编译生产项目...');
     }
 
-    const subprocess = spawn('lerna', [
+    const subprocess = spawn(`lerna${type == 'Windows_NT' ? '.cmd' : ''}`, [
       'run',
       '--scope',
       `${packageScope}/${model}`,
