@@ -11,15 +11,12 @@ let [type, value] = program.args;
 
 inquirer.prompt(promptList.frames).then((answers) => {
   let frame = answers.frame;
-  // readyDownloadDir(answers.frame);
-  console.log(frame, 'frame');
   createProject(answers.frame);
 });
 
 // 创建项目
 function createProject(frame) {
   const tempDir = `github:pzl1026/bagua-template#${frame}`;
-  console.log(tempDir, 'temll');
   const spinner = ora(chalk.yellow('Create start')).start();
 
   spinner.color = 'yellow';
