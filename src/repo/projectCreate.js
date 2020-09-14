@@ -12,12 +12,12 @@ let [type, value] = program.args;
 // 创建项目
 function createProject() {
   const tempDir = 'github:pzl1026/bagua-template#master';
-  const spinner = ora(chalk.yellow('Create start')).start();
+  let spinner = ora(chalk.yellow()).start();
 
   spinner.color = 'yellow';
   spinner.text = chalk.blue('开始创建项目...');
 
-  download(tempDir, './', function(err) {
+  download(tempDir, './', async function(err) {
     if (err) {
       throw err;
       process.exit();
@@ -31,8 +31,9 @@ function createProject() {
         process.exit();
         return;
       }
-      spinner.text = chalk.blue('模块目录创建完成！！');
 
+      spinner.text = chalk.blue('项目创建完成！！');
+      spinner.succeed();
       try {
         // 修改.bagua.js的packageScope
         await configChange.handleConfig(
@@ -40,8 +41,9 @@ function createProject() {
           /(?<=packageScope:\s)(.*)/,
           `'@${value}',`
         );
-
-        spinner.text = chalk.blue('项目目录创建成功！！');
+        spinner.color = 'yellow';
+        spinner.text = chalk.blue('模块创建完成！！');
+        spinner.succeed();
         // 修改package.json的name
         await configChange.handleConfig(
           currentDir + '/package.json',
@@ -62,15 +64,21 @@ function createProject() {
           }
         });
 
+        spinner = ora(chalk.yellow()).start();
+        spinner.color = 'yellow';
         spinner.text = chalk.blue(`正在安装${value}的modules...`);
         let end = await install(value);
-        let end2 = await installAll(value);
-        if (end && end2) {
-          spinner.text = chalk.blue('项目创建成功！！');
+        if (end) {
+          spinner.text = chalk.blue(`已完成${value}的modules的安装！！`);
           spinner.succeed();
-          spinner.stop();
-          spinner.clear();
-          process.exit();
+
+          let end2 = await installAll(value);
+          if (end2.every((success) => success)) {
+            spinner.text = chalk.blue('项目创建成功！！');
+            spinner.stop();
+            spinner.clear();
+            process.exit();
+          }
         }
       } catch (err) {
         throw err;

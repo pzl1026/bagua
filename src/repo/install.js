@@ -1,5 +1,6 @@
 const { spawn } = require('child_process');
 const { type } = require('os');
+const chalk = require('chalk');
 const helper = require('../helper');
 let [type2, value] = program.args;
 
@@ -15,7 +16,7 @@ function install(name) {
       }
     );
     subprocess.stdout.on('data', (data) => {
-      console.log(data.toString());
+      console.log(chalk.greenBright(data.toString()));
     });
     subprocess.on('close', (code) => {
       if (code !== 0) {
