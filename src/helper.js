@@ -12,6 +12,8 @@ const noWpConfig = [
   'prod',
   'remotes',
   'exposes',
+  'shared',
+  'library',
 ];
 
 function resolve(dir) {

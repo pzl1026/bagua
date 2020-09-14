@@ -23,11 +23,6 @@ let devServer = bgCustomConfig.nomocker
         );
       },
     };
-console.log(
-  devServer,
-  helper.resolve(`mocker/${program.devConf || 'default'}.js`),
-  'devser'
-);
 
 const options = {
   watchOptions: {
