@@ -11,12 +11,16 @@ function installChild(fPath, item, models) {
     let spinner = ora(chalk.blue()).start();
     spinner.color = 'yellow';
     spinner.text = chalk.blue(`正在安装${models.join('、')}的modules...`);
-    const subprocess = spawn(`npm`, ['install'], {
-      cwd: fPath,
-    });
+    const subprocess = spawn(
+      `npm${type == 'Windows_NT' ? '.cmd' : ''}`,
+      ['install'],
+      {
+        cwd: fPath,
+      }
+    );
 
     subprocess.stdout.on('data', (data) => {
-      console.log(chalk.greenBright(data.toString()));
+      console.log(chalk.yellow(data.toString()));
     });
     subprocess.on('close', (code) => {
       if (code !== 0) {

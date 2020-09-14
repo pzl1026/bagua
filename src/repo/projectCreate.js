@@ -15,7 +15,7 @@ function createProject() {
   let spinner = ora(chalk.yellow()).start();
 
   spinner.color = 'yellow';
-  spinner.text = chalk.blue('开始创建项目...');
+  spinner.text = chalk.green('开始创建项目...');
 
   download(tempDir, './', async function(err) {
     if (err) {
@@ -32,7 +32,7 @@ function createProject() {
         return;
       }
 
-      spinner.text = chalk.blue('项目创建完成！！');
+      spinner.text = chalk.green('项目创建完成！！');
       spinner.succeed();
       try {
         // 修改.bagua.js的packageScope
@@ -41,8 +41,8 @@ function createProject() {
           /(?<=packageScope:\s)(.*)/,
           `'@${value}',`
         );
-        spinner.color = 'yellow';
-        spinner.text = chalk.blue('模块创建完成！！');
+
+        spinner.text = chalk.green('模块创建完成！！');
         spinner.succeed();
         // 修改package.json的name
         await configChange.handleConfig(
@@ -74,7 +74,8 @@ function createProject() {
 
           let end2 = await installAll(value);
           if (end2.every((success) => success)) {
-            spinner.text = chalk.blue('项目创建成功！！');
+            spinner = ora(chalk.yellow()).start();
+            spinner.text = chalk.green('项目创建成功！！');
             spinner.stop();
             spinner.clear();
             process.exit();

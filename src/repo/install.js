@@ -16,11 +16,11 @@ function install(name) {
       }
     );
     subprocess.stdout.on('data', (data) => {
-      console.log(chalk.greenBright(data.toString()));
+      console.log(chalk.yellow(data.toString()));
     });
     subprocess.on('close', (code) => {
       if (code !== 0) {
-        console.log(`npm install进程退出，退出码 ${code}`);
+        console.log(`\n npm install进程退出，退出码 ${code}`);
       }
 
       resolve(true);
