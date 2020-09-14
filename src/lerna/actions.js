@@ -8,10 +8,11 @@ const model = bgCustomConfig.model || '*';
 let action;
 
 if (program.lernaStart) {
-  action = 'start';
+  action = program.lernaStart;
+  console.log(action, 'action');
   chalk.yellow('正在启动项目...');
 } else if (program.lernaBuildProduction) {
-  action = 'build';
+  action = program.lernaBuildProduction;
   chalk.yellow('正在编译生产项目...');
 }
 
