@@ -1,13 +1,33 @@
 const webpack = require('webpack');
 const path = require('path');
 const webpackDevServer = require('webpack-dev-server');
-// const apiMocker = require('webpack-api-mocker');
+const apiMocker = require('webpack-api-mocker');
 const fs = require('fs');
 const config = require('./webpack.config.js');
 const compiler = webpack(config);
 // const conf = require('./bin/conf');
 // const helper = require('./helper');
 // const CWD = process.cwd();
+
+let devServer = bgCustomConfig.nomocker
+  ? bgWpConfig.devServer
+  : {
+      before: function(app) {
+        apiMocker(
+          app,
+          helper.resolve(`mocker/${program.devConf || 'default'}.js`),
+          {
+            proxy: bgWpConfig.devServer.proxy,
+            changeHost: true,
+          }
+        );
+      },
+    };
+console.log(
+  devServer,
+  helper.resolve(`mocker/${program.devConf || 'default'}.js`),
+  'devser'
+);
 
 const options = {
   watchOptions: {
@@ -26,6 +46,7 @@ const options = {
   // progress: true,
   publicPath: '/',
   quiet: false,
+  ...devServer,
 };
 
 // Tell express to use the webpack-dev-middleware and use the webpack.config.js

@@ -17,7 +17,7 @@ module.exports = {
     alias: {
       vue$: 'vue/dist/vue.esm.js',
       'vue-router$': 'vue-router/dist/vue-router.js',
-      '@': './src',
+      '@': helper.resolve('src'),
     },
   },
   // output: {
@@ -32,6 +32,10 @@ module.exports = {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
+        include: [
+          helper.resolve('src'),
+          helper.resolve('node_modules/webpack-dev-server/client'),
+        ],
         options: {
           presets: ['@babel/preset-react'],
         },
