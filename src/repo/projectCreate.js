@@ -14,6 +14,7 @@ function createProject() {
   const tempDir = 'github:pzl1026/bagua-template#master';
   let spinner = ora(chalk.yellow()).start();
 
+  spinner._spinner = require('./spinner.config');
   spinner.color = 'yellow';
   spinner.text = chalk.green('开始创建项目...');
 
