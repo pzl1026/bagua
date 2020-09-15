@@ -3,6 +3,7 @@ const path = require('path');
 const packageData = require(path.resolve(__dirname, '../package.json'));
 
 program
+  .version(packageData.version, '-v, --vers', 'output the current version')
   // .option('-c, --create-project-name <projectName>', 'create project')
   .option('-d, --dev-conf [config]', 'server starting')
   .option('-b, --build-conf [config]', 'project compiling')
@@ -12,8 +13,7 @@ program
   .option('-p, --lernaBuildProduction [script]', 'lerna build production')
   .option('-i, --lernaInstall', 'lerna install for packages')
   .command('create <source> [destination]')
-  .command('createmodel <source> [destination]')
-  .version(packageData.version);
+  .command('createmodel <source> [destination]');
 
 program.parse(process.argv);
 
