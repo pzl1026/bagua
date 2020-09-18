@@ -7,11 +7,11 @@ program
   // .option('-c, --create-project-name <projectName>', 'create project')
   .option('-d, --dev-conf [config]', 'server starting')
   .option('-b, --build-conf [config]', 'project compiling')
-  .option('-a, --analyzer', 'build analyzer')
+  // .option('-a, --analyzer', 'build analyzer')
   .option('-s, --lernaStart [script]', 'lerna start')
   .option('-m, --modelCreate', 'create model')
   .option('-p, --lernaBuildProduction [script]', 'lerna build production')
-  .option('-i, --lernaInstall', 'lerna install for packages')
+  // .option('-i, --lernaInstall', 'lerna install for packages')
   .command('create <source> [destination]')
   .command('createmodel <source> [destination]');
 
