@@ -12,7 +12,7 @@ program
   .option('-m, --modelCreate', 'create model')
   .option('-p, --lernaBuildProduction [script]', 'lerna build production')
   // .option('-i, --lernaInstall', 'lerna install for packages')
-  .command('create <source> [destination]')
+  .command('init <source> [destination]')
   .command('createmodel <source> [destination]');
 
 program.parse(process.argv);

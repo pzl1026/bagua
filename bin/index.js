@@ -3,7 +3,7 @@
 program = require('./program');
 helper = require('../src/helper');
 let type = program.args[0];
-if (type == 'create') {
+if (type == 'init') {
   require('../src/repo/projectCreate');
   return;
 }

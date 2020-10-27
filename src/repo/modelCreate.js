@@ -16,7 +16,8 @@ inquirer.prompt(promptList.frames).then((answers) => {
 
 // 创建项目
 function createProject(frame) {
-  const tempDir = `github:pzl1026/bagua-template#${frame}`;
+  // const tempDir = `github:pzl1026/bagua-template#${frame}`;
+  const tempDir = `github:pzl1026/mqj-template#${frame}`;
   const spinner = ora(chalk.yellow('Create start')).start();
 
   spinner.color = 'yellow';

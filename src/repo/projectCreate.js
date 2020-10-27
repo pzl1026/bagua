@@ -8,10 +8,12 @@ const install = require('./install');
 const installAll = require('./installAll');
 const { exit } = require('process');
 let [type, value] = program.args;
+const pName = value || 'mqj';
 
 // 创建项目
 function createProject() {
-  const tempDir = 'github:pzl1026/bagua-template#master';
+  // const tempDir = 'github:pzl1026/bagua-template#master';
+  const tempDir = `github:pzl1026/mqj-template#main`;
   let spinner = ora(chalk.yellow()).start();
 
   spinner._spinner = require('./spinner.config');
@@ -24,15 +26,10 @@ function createProject() {
       process.exit();
       return;
     }
+    // let currDirArgs = helper.resolve().split();
     let currentDir = helper.resolve(value);
-    // 重命名
-    fs.rename(helper.resolve('packages'), currentDir, async (err) => {
-      if (err) {
-        throw err;
-        process.exit();
-        return;
-      }
 
+    async function doProject() {
       spinner.text = chalk.green('项目创建完成！！');
       spinner.succeed();
       try {
@@ -40,7 +37,7 @@ function createProject() {
         await configChange.handleConfig(
           currentDir + '/.bagua.js',
           /(?<=packageScope:\s)(.*)/,
-          `'@${value}',`
+          `'@${pName}',`
         );
 
         spinner.text = chalk.green('模块创建完成！！');
@@ -49,7 +46,7 @@ function createProject() {
         await configChange.handleConfig(
           currentDir + '/package.json',
           /(?<=\"name\":\s)(.*)/,
-          `"${value}",`
+          `"${pName}",`
         );
 
         let files = fs.readdirSync(currentDir);
@@ -60,17 +57,17 @@ function createProject() {
             configChange.handleConfig(
               fPath + '/package.json',
               /(?<=\"name\":\s)(.*)/,
-              `"@${value}/${item}",`
+              `"@${pName}/${item}",`
             );
           }
         });
 
         spinner = ora(chalk.yellow()).start();
         spinner.color = 'yellow';
-        spinner.text = chalk.blue(`正在安装${value}的modules...`);
+        spinner.text = chalk.blue(`正在安装${pName}的modules...`);
         let end = await install(value);
         if (end) {
-          spinner.text = chalk.blue(`已完成${value}的modules的安装！！`);
+          spinner.text = chalk.blue(`已完成${pName}的modules的安装！！`);
           spinner.succeed();
 
           let end2 = await installAll(value);
@@ -86,7 +83,21 @@ function createProject() {
         throw err;
         exit();
       }
-    });
+    }
+
+    if (value) {
+      // 重命名
+      // fs.rename(helper.resolve(pName), currentDir, async (err) => {
+      //   if (err) {
+      //     throw err;
+      //     process.exit();
+      //     return;
+      //   }
+      //   doProject();
+      // });
+    } else {
+      doProject();
+    }
   });
 }
 
