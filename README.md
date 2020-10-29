@@ -1,5 +1,6 @@
 # bagua-cli
 
+[文档说明](https://www.yuque.com/docs/share/83cf0e1b-157c-46e4-9cbe-f6161816a8c6?#)
 基于 webpack5 的联邦模块，微前端方案
 
 ### 动机（相对于 vcmqj）
