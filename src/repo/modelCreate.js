@@ -8,6 +8,7 @@ const promptList = require('./promptList.config');
 const configChange = require('./configChange');
 const install = require('./install');
 let [type, value] = program.args;
+const pName = 'mqj';
 
 inquirer.prompt(promptList.frames).then((answers) => {
   let frame = answers.frame;
@@ -53,7 +54,7 @@ function createProject(frame) {
       await configChange.handleConfig(
         currentDir + '/package.json',
         /(?<=\"name\":\s)(.*)/,
-        `"@${projectDirName}/${value}",`
+        `"@${pName || projectDirName}/${value}",`
       );
 
       spinner.text = chalk.blue(`正在安装${value}的modules...`);

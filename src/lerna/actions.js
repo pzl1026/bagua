@@ -23,6 +23,12 @@ const subprocess = spawn(
   }
 );
 
+function GetRandomNum(Min, Max) {
+  var Range = Max - Min;
+  var Rand = Math.random();
+  return Min + Math.round(Rand * Range);
+}
+
 subprocess.stdout.on('data', (data) => {
-  console.log(data.toString());
+  console.info(data.toString());
 });
