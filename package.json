@@ -6,6 +6,11 @@
     "bagua-cli": "bin/index.js"
   },
   "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pzl1026/vcmqj.git"
+  },
+  "homepage": "https://github.com/pzl1026/vcmqj#readme",
   "scripts": {
     "dev": "node ../bin/index.js -d test",
     "build": "webpack --mode production",
