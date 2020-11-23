@@ -7,6 +7,7 @@ const ora = require('ora');
 let [type2, value] = program.args;
 
 function installChild(fPath, item, models) {
+  models = models.filter((name) => name != '.git');
   return new Promise((resolve, reject) => {
     let spinner = ora(chalk.blue()).start();
     spinner.color = 'yellow';

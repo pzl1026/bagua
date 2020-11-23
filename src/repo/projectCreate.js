@@ -20,7 +20,7 @@ function createProject() {
   spinner.color = 'yellow';
   spinner.text = chalk.green('开始创建项目...');
 
-  download(tempDir, './', async function(err) {
+  download(tempDir, './', async function (err) {
     if (err) {
       throw err;
       process.exit();
@@ -51,6 +51,7 @@ function createProject() {
 
         let files = fs.readdirSync(currentDir);
         files.forEach((item) => {
+          if (item == '.git') return;
           let fPath = currentDir + '/' + item;
           let stat = fs.statSync(fPath);
           if (stat.isDirectory() === true) {
