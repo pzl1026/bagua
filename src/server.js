@@ -8,11 +8,9 @@ const compiler = webpack(config);
 // const conf = require('./bin/conf');
 // const helper = require('./helper');
 // const CWD = process.cwd();
-
 let devServer = bgCustomConfig.nomocker
-  ? bgWpConfig.devServer
-  : {
-      before: function(app) {
+  ? {
+      before: function (app) {
         apiMocker(
           app,
           helper.resolve(`mocker/${program.devConf || 'default'}.js`),
@@ -22,7 +20,8 @@ let devServer = bgCustomConfig.nomocker
           }
         );
       },
-    };
+    }
+  : bgWpConfig.devServer;
 
 const options = {
   watchOptions: {
@@ -57,6 +56,6 @@ const server = new webpackDevServer(compiler, options);
 //   });
 // });
 
-server.listen(bgCustomConfig.port, '', function(res) {
-  console.log(`listening on port ${bgCustomConfig.port}!\n`);
+server.listen(bgCustomConfig.port, '', function (res) {
+  console.log(`listening22 on port ${bgCustomConfig.port}!\n`);
 });
