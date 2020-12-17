@@ -13,7 +13,7 @@ const pName = value || 'mqj';
 // 创建项目
 function createProject() {
   // const tempDir = 'github:pzl1026/bagua-template#master';
-  const tempDir = `github:pzl1026/mqj-template#main`;
+  const tempDir = `github:pzl1026/mqj-template#main-vue3`;
   let spinner = ora(chalk.yellow()).start();
 
   spinner._spinner = require('./spinner.config');

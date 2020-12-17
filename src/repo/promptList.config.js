@@ -4,7 +4,7 @@ const promptList = {
       type: 'rawlist',
       message: '请选择框架',
       name: 'frame',
-      choices: ['vue', 'react'],
+      choices: ['vue3', 'react', 'vue'],
     },
   ],
   projectCheckConf: [
