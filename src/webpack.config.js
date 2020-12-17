@@ -11,12 +11,14 @@ module.exports = {
   //   port: 3005,
   //   open: true,
   // },
+  // devtool: 'eval-cheap-module-source-map',
+  // devtool: 'cheap-eval-source-map',
   resolve: {
     modules: ['node_modules'],
     extensions: ['.js', '.jsx', '.vue', '.ts', 'tsx'],
     alias: {
-      vue$: 'vue/dist/vue.esm.js',
-      'vue-router$': 'vue-router/dist/vue-router.js',
+      // vue$: 'vue/dist/vue.esm.js',
+      // 'vue-router$': 'vue-router/dist/vue-router.js',
       '@': helper.resolve('src'),
     },
   },

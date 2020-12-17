@@ -1,9 +1,11 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack').container
   .ModuleFederationPlugin;
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+// const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('../plugins/copy');
+const webpack = require('webpack');
 
 let MF_FIELDS = [
   'exposes',
@@ -50,6 +52,10 @@ let plugins = [
   new VueLoaderPlugin(),
   new HtmlWebpackPlugin({
     template: helper.resolve('./index.html'),
+  }),
+  new webpack.DefinePlugin({
+    __VUE_OPTIONS_API__: 'true',
+    __VUE_PROD_DEVTOOLS__: 'false',
   }),
 ];
 

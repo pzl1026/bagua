@@ -57,5 +57,5 @@ const server = new webpackDevServer(compiler, options);
 // });
 
 server.listen(bgCustomConfig.port, '', function (res) {
-  console.log(`listening22 on port ${bgCustomConfig.port}!\n`);
+  console.log(`listening on port ${bgCustomConfig.port}!\n`);
 });
