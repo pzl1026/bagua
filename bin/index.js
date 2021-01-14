@@ -2,6 +2,10 @@
 
 program = require('./program');
 helper = require('../src/helper');
+const { v4: uuidv4 } = require('uuid');
+
+global.VERSION = uuidv4();
+
 let type = program.args[0];
 if (type == 'init') {
   require('../src/repo/projectCreate');

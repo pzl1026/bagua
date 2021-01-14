@@ -14,6 +14,7 @@ const noWpConfig = [
   'exposes',
   'shared',
   'library',
+  'filename',
 ];
 
 function resolve(dir) {

@@ -1,9 +1,9 @@
 {
   "name": "bagua-cli",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "author": "pzl",
   "bin": {
-    "bagua-cli": "bin/index.js"
+    "bagua-cli2": "bin/index.js"
   },
   "devDependencies": {},
   "repository": {
@@ -36,7 +36,7 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "serve": "11.3.2",
-    "uuid": "^8.3.0",
+    "uuid": "^8.3.2",
     "vue-loader": "^16.0.0-beta.5",
     "webpack": "5.0.0-beta.25",
     "webpack-api-mocker": "^1.7.6",

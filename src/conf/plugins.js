@@ -19,7 +19,7 @@ let MF_FIELDS = [
 ];
 
 let mf = {
-  filename: 'remoteEntry.js',
+  // filename: 'remoteEntry.js',
 };
 
 for (let [key, value] of Object.entries(bgCustomConfig)) {
