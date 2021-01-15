@@ -3,7 +3,7 @@ const Koa = require('koa');
 const app = new Koa();
 const helper = require('../helper');
 const projectConfig = require(helper.resolve('.bagua'));
-const port = projectConfig.serverTemplatePort;
+const port = projectConfig.serverStaticPort;
 
 // $ GET /
 app.use(serve(helper.resolve('output/static/manage')));

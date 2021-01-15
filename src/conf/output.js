@@ -1,6 +1,6 @@
 const helper = require('../helper');
-const { v4 } = require('uuid');
-const hash = v4();
+// const { v4 } = require('uuid');
+// const hash = v4();
 
 module.exports = !isDev
   ? {
@@ -12,7 +12,7 @@ module.exports = !isDev
       //   bgCustomConfig.isTop ? bgCustomConfig.name + '/' : ''
       // }js/app.${hash}.js`,
       path: helper.resolve(`./dist`),
-      filename: `${bgCustomConfig.name + '/js/'}app.${hash}.js`,
+      filename: `${bgCustomConfig.name + '/js/'}[name].[hash].js`,
     }
   : {
       publicPath: bgWpConfig.output.publicPath,

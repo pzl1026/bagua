@@ -2,17 +2,13 @@ const path = require('path');
 const helper = require('./helper');
 const plugins = require('./conf/plugins');
 const output = require('./conf/output');
+const performance = require('./conf/performance');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: helper.resolve('./src/index.js'),
-  mode: 'development',
-  // devServer: {
-  //   contentBase: path.join(__dirname, 'dist'),
-  //   port: 3005,
-  //   open: true,
-  // },
-  // devtool: 'eval-cheap-module-source-map',
-  // devtool: 'cheap-eval-source-map',
+  mode: isDev ? 'development' : 'production',
+  devtool: isDev ? 'cheap-module-source-map' : 'eval-cheap-module-source-map',
   resolve: {
     modules: ['node_modules'],
     extensions: ['.js', '.jsx', '.vue', '.ts', 'tsx'],
@@ -22,11 +18,6 @@ module.exports = {
       '@': helper.resolve('src'),
     },
   },
-  // output: {
-  //   path: helper.resolve('dist/js/'),
-  //   publicPath: bgWpConfig.output.publicPath,
-  // },
-
   output,
   module: {
     rules: [
@@ -56,30 +47,19 @@ module.exports = {
         //   },
         // },
       },
-      // {
-      //   test: /\.css$/,
-      //   use: ExtractTextPlugin.extract({
-      //     fallback: 'style-loader',
-      //     use: ['css-loader'],
-      //     // options: {
-      //     //     modules: true,
-      //     // }
-      //   }),
-      // },
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.(s[ac]ss)/i,
         use: [
-          // Creates `style` nodes from JS strings
-          'style-loader',
-          // Translates CSS into CommonJS
+          // MiniCssExtractPlugin.loader,
           'css-loader',
-          // Compiles Sass to CSS
+          'postcss-loader',
           'sass-loader',
         ],
       },
       {
         test: /\.css$/, // 处理 css 文件，以及 .vue 文件中的 <style>
         use: [
+          // MiniCssExtractPlugin.loader,
           'vue-style-loader',
           'style-loader',
           'css-loader',
@@ -92,7 +72,7 @@ module.exports = {
         options: {
           esModule: false,
           limit: 100,
-          name: '[name].[hash:7].[ext]',
+          name: bgCustomConfig.name + '/assets/' + '[name].[hash:7].[ext]',
         },
       },
       {
@@ -100,7 +80,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: '[name].[hash:7].[ext]',
+          name: bgCustomConfig.name + '/assets/' + '[name].[hash:7].[ext]',
         },
       },
       {
@@ -108,10 +88,17 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: '[name].[hash:7].[ext]',
+          name: bgCustomConfig.name + '/assets/' + '[name].[hash:7].[ext]',
         },
       },
     ],
   },
-  plugins,
+  plugins: [
+    ...plugins,
+    new MiniCssExtractPlugin({
+      filename: bgCustomConfig.name + '/css/[name].css',
+      chunkFilename: '[id].css',
+    }),
+  ],
+  ...performance,
 };

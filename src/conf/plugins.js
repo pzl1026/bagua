@@ -7,6 +7,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('../plugins/copy');
 const webpack = require('webpack');
 const helper = require('../helper');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 let MF_FIELDS = [
   'exposes',
@@ -54,6 +55,7 @@ let plugins = [
   new HtmlWebpackPlugin({
     template: helper.resolve('./index.html'),
   }),
+  // new ExtractTextPlugin('styles.css'),
   new webpack.DefinePlugin({
     __VUE_OPTIONS_API__: 'true',
     __VUE_PROD_DEVTOOLS__: 'false',

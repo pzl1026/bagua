@@ -3,9 +3,8 @@
   "version": "0.1.1",
   "author": "pzl",
   "bin": {
-    "bagua-cli2": "bin/index.js"
+    "bagua-cli": "bin/index.js"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pzl1026/vcmqj.git"
@@ -25,13 +24,15 @@
     "chalk": "^4.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "download-git-repo": "^3.0.2",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "fs-extra": "^9.0.1",
-    "html-webpack-plugin": "git://github.com/ScriptedAlchemy/html-webpack-plugin#master",
+    "html-webpack-plugin": "^4.5.1",
     "inquirer": "^7.3.3",
     "koa": "^2.13.1",
     "koa-router": "^10.0.0",
     "koa-static": "^5.0.0",
     "koa-views": "^7.0.0",
+    "mini-css-extract-plugin": "^1.3.4",
     "ora": "^5.0.0",
     "portfinder": "^1.0.28",
     "postcss-import": "^12.0.1",
@@ -42,11 +43,14 @@
     "serve": "11.3.2",
     "underscore": "^1.12.0",
     "uuid": "^8.3.2",
-    "vue-loader": "^16.0.0-beta.5",
-    "webpack": "5.0.0-beta.25",
+    "vue-loader": "^16.1.2",
+    "webpack": "^5.14.0",
     "webpack-api-mocker": "1.7.6",
     "webpack-cli": "3.3.12",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.1.3"
+  },
+  "devDependencies": {
+    "terser-webpack-plugin": "^5.1.1"
   }
 }
