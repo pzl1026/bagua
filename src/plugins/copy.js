@@ -35,22 +35,50 @@ Copy.prototype.apply = function (compiler) {
           return true;
         };
       }
+      let moduleDir = path.resolve(
+        process.cwd(),
+        option.to + '/' + option.module
+      );
 
-      fs.copy(
-        path.join(compiler.context, option.from),
-        path.join(compiler.context, option.to),
-        opts
-      )
-        .then(function () {
-          console.log(
-            chalk.blue('    ' + option.from + ' => ' + option.to + ' Complete!')
-          );
-        })
-        .catch(function () {
-          console.log(
-            chalk.red('    ' + option.from + ' => ' + option.to + ' Failure!')
-          );
-        });
+      fs.remove(moduleDir, (err) => {
+        if (err) return console.error(err);
+
+        fs.copy(
+          path.join(compiler.context, option.from + '/' + option.module),
+          path.join(compiler.context, option.to + '/' + option.module),
+          opts
+        )
+          .then(function () {
+            console.log(
+              chalk.blue(
+                '    ' + option.from + ' => ' + option.to + ' Complete!'
+              )
+            );
+            console.log(option.module, 'option.module');
+            if (option.module == 'common') {
+              fs.copy(
+                path.join(compiler.context, option.from + '/index.html'),
+                path.join(compiler.context, '../view/manage/index.html')
+              ).then(() => {
+                console.log(
+                  chalk.blue(
+                    '    ' +
+                      option.from +
+                      '/index.html' +
+                      ' => ' +
+                      '../view/manage/index.html' +
+                      ' Complete!'
+                  )
+                );
+              });
+            }
+          })
+          .catch(function () {
+            console.log(
+              chalk.red('    ' + option.from + ' => ' + option.to + ' Failure!')
+            );
+          });
+      });
     });
   });
 };

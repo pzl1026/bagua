@@ -6,6 +6,7 @@ const { VueLoaderPlugin } = require('vue-loader');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('../plugins/copy');
 const webpack = require('webpack');
+const helper = require('../helper');
 
 let MF_FIELDS = [
   'exposes',
@@ -64,7 +65,8 @@ if (!isDev) {
     new CopyPlugin([
       {
         from: 'dist',
-        to: '../dist',
+        to: '../output/static/manage',
+        module: bgCustomConfig.name,
       },
     ])
   );

@@ -1,9 +1,9 @@
 {
   "name": "bagua-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "pzl",
   "bin": {
-    "bagua-cli": "bin/index.js"
+    "bagua-cli2": "bin/index.js"
   },
   "devDependencies": {},
   "repository": {
