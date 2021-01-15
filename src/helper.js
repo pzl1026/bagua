@@ -1,5 +1,4 @@
 const path = require('path');
-const CWD = process.cwd();
 const noWpConfig = [
   'name',
   'isTop',
@@ -29,7 +28,7 @@ function getPublicPathAndBase(outPublicPath) {
   } catch (e) {}
   publicPath.replace(
     /((?:(?:https|http?:)?\/\/[\w-]+(?:\.\w+)+)?\/?)?(.*)/,
-    function(all, domain, base) {
+    function (all, domain, base) {
       publicPath = domain || '';
       basePath = base;
     }

@@ -1,7 +1,9 @@
 const Koa = require('koa');
-var views = require('koa-views');
-var Router = require('koa-router');
-var helper = require('../helper');
+const views = require('koa-views');
+const Router = require('koa-router');
+const helper = require('../helper');
+const projectConfig = require(helper.resolve('.bagua'));
+const port = projectConfig.serverTemplatePort;
 
 const app = new Koa();
 var router = new Router();
@@ -34,6 +36,6 @@ app.use(
   })
 );
 
-app.listen(3000);
+app.listen(port);
 
-console.log('listening on port 3000');
+console.log('listening on port ' + port);
