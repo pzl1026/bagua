@@ -1,11 +1,12 @@
 const Koa = require('koa');
-const app = new Koa();
+var views = require('koa-views');
 var Router = require('koa-router');
+var helper = require('../helper');
+
+const app = new Koa();
 var router = new Router();
 
-var views = require('koa-views');
-
-const render = views(__dirname + '/view/manage', {
+const render = views(helper.resolve('view/manage'), {
   map: {
     html: 'underscore',
   },
@@ -15,6 +16,10 @@ app.use(render);
 
 // 指定一个url匹配
 router.get('/:module', async (ctx, a, b) => {
+  await ctx.render('index');
+});
+
+router.get('/', async (ctx, a, b) => {
   await ctx.render('index');
 });
 

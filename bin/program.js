@@ -13,7 +13,9 @@ program
   .option('-p, --lernaBuildProduction [script]', 'lerna build production')
   // .option('-i, --lernaInstall', 'lerna install for packages')
   .command('init <source> [destination]')
-  .command('createmodel <source> [destination]');
+  .command('createmodel <source> [destination]')
+  .command('tempServe <source> [destination]')
+  .command('staticServe <source> [destination]');
 
 program.parse(process.argv);
 

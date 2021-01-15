@@ -12,6 +12,21 @@ if (type == 'init') {
   return;
 }
 
+if (type == 'tmpServe') {
+  require('../src/prod/tmpServe');
+  return;
+}
+
+if (type == 'staticServe') {
+  require('../src/prod/staticServe');
+  return;
+}
+
+if (type == 'init') {
+  require('../src/repo/projectCreate');
+  return;
+}
+
 if (type == 'createmodel') {
   require('../src/repo/modelCreate');
   return;
