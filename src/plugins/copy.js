@@ -54,7 +54,7 @@ Copy.prototype.apply = function (compiler) {
                 '    ' + option.from + ' => ' + option.to + ' Complete!'
               )
             );
-            console.log(option.module, 'option.module');
+
             if (option.module == 'common') {
               fs.copy(
                 path.join(compiler.context, option.from + '/index.html'),
