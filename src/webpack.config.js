@@ -1,11 +1,8 @@
-const path = require('path');
 const helper = require('./helper');
 const plugins = require('./conf/plugins');
 const output = require('./conf/output');
 const performance = require('./conf/performance');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
-const ExtractCssChunksPlugin = require('extract-css-chunks-webpack-plugin');
 
 const cssLoaders = () => {
   const ssExtUse = ['css-loader', 'postcss-loader', 'sass-loader'];
@@ -60,16 +57,6 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        // options: {
-        //   loaders: {
-        //     scss: ['vue-style-loader', 'css-loader', 'sass-loader'],
-        //     sass: [
-        //       'vue-style-loader',
-        //       'css-loader',
-        //       'sass-loader?indentedSyntax',
-        //     ],
-        //   },
-        // },
       },
       ...cssLoaders(),
       {
@@ -99,19 +86,6 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    ...plugins,
-    new CompressionPlugin(),
-    new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
-      filename: '[name].[contenthash].css',
-      chunkFilename: bgCustomConfig.name + '/css/[id].[contenthash].css',
-    }),
-    // new ExtractCssChunksPlugin({
-    //   filename: 'css/[name].[contenthash:8].css',
-    //   chunkFilename: 'css/[name].[contenthash:8].chunk.css',
-    // }),
-  ],
+  plugins,
   ...performance,
 };

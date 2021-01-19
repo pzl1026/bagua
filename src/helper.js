@@ -14,6 +14,9 @@ const noWpConfig = [
   'shared',
   'library',
   'filename',
+  'staticDir',
+  'serverDir',
+  'viewDir',
 ];
 
 function resolve(dir) {

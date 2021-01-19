@@ -1,14 +1,14 @@
-const TerserPlugin = require('terser-webpack-plugin');
+// const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const ESBuildPlugin = require('esbuild-webpack-plugin').default;
 
 module.exports = isDev
   ? {}
   : {
       performance: {
-        maxAssetSize: 1000000,
         hints: 'warning',
         //入口起点的最大体积
-        maxEntrypointSize: 50000000,
+        maxEntrypointSize: 10000000,
         //生成文件的最大体积
         maxAssetSize: 30000000,
         //只给出 js 文件的性能提示
@@ -19,7 +19,11 @@ module.exports = isDev
       optimization: {
         usedExports: true,
         minimize: true,
-        minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
+        minimizer: [
+          // new TerserPlugin(),
+          new CssMinimizerPlugin(),
+          new ESBuildPlugin(),
+        ],
         splitChunks: {
           chunks: 'async',
           minSize: 20000,

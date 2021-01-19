@@ -58,7 +58,7 @@ Copy.prototype.apply = function (compiler) {
             if (option.module == 'common') {
               fs.copy(
                 path.join(compiler.context, option.from + '/index.html'),
-                path.join(compiler.context, '../view/manage/index.html')
+                path.join(compiler.context, option.viewDir + '/index.html')
               ).then(() => {
                 console.log(
                   chalk.blue(
@@ -66,7 +66,8 @@ Copy.prototype.apply = function (compiler) {
                       option.from +
                       '/index.html' +
                       ' => ' +
-                      '../view/manage/index.html' +
+                      option.viewDir +
+                      '/index.html' +
                       ' Complete!'
                   )
                 );

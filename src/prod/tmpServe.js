@@ -1,6 +1,7 @@
 const Koa = require('koa');
 const views = require('koa-views');
 const Router = require('koa-router');
+const open = require('open');
 const helper = require('../helper');
 const projectConfig = require(helper.resolve('.bagua'));
 const port = projectConfig.serverTemplatePort;
@@ -8,7 +9,7 @@ const port = projectConfig.serverTemplatePort;
 const app = new Koa();
 var router = new Router();
 
-const render = views(helper.resolve('view/manage'), {
+const render = views(helper.resolve(projectConfig.tmpDir), {
   map: {
     html: 'underscore',
   },
@@ -38,4 +39,7 @@ app.use(
 
 app.listen(port);
 
-console.log('listening on port ' + port);
+console.info('listening on port ' + port);
+open('http://localhost:' + port, {
+  app: ['google chrome', '--incognito'],
+});
