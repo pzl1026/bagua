@@ -8,14 +8,14 @@ const cssLoaders = () => {
   const ssExtUse = ['css-loader', 'postcss-loader', 'sass-loader'];
   const cssExtUse = ['style-loader', 'css-loader', 'postcss-loader'];
   if (!isDev) {
-    ssExtUse.unshift(MiniCssExtractPlugin.loader);
+    ssExtUse = [MiniCssExtractPlugin.loader, ...cssExtUse, 'vue-style-loader'];
     cssExtUse.shift();
-    cssExtUse.unshift(MiniCssExtractPlugin.loader);
+    cssExtUse = [MiniCssExtractPlugin.loader, ...cssExtUse, 'vue-style-loader'];
   }
 
   return [
     {
-      test: /\.(s[ac]ss)/i,
+      test: /\.s[ac]ss$/i,
       use: ssExtUse,
     },
     {
