@@ -5,19 +5,17 @@ const performance = require('./conf/performance');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const cssLoaders = () => {
-  const ssExtUse = ['style-loader', 'css-loader', 'sass-loader'];
+  const ssExtUse = [
+    isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+    'css-loader',
+    'sass-loader',
+  ];
   const cssExtUse = [
-    'style-loader',
+    'vue-style-loader',
+    isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
     'css-loader',
     'postcss-loader',
-    'vue-style-loader',
   ];
-  if (!isDev) {
-    ssExtUse.shift();
-    ssExtUse = [MiniCssExtractPlugin.loader, ...cssExtUse];
-    cssExtUse.shift();
-    cssExtUse = [MiniCssExtractPlugin.loader, ...cssExtUse];
-  }
 
   return [
     {
@@ -31,6 +29,7 @@ const cssLoaders = () => {
   ];
 };
 
+console.log();
 module.exports = {
   entry: helper.resolve('./src/index.js'),
   mode: isDev ? 'development' : 'production',
@@ -65,6 +64,26 @@ module.exports = {
         loader: 'vue-loader',
       },
       ...cssLoaders(),
+      // {
+      //   test: /\.s[ac]ss$/i,
+      //   use: [
+      //     // Creates `style` nodes from JS strings
+      //     'style-loader',
+      //     // Translates CSS into CommonJS
+      //     'css-loader',
+      //     // Compiles Sass to CSS
+      //     'sass-loader',
+      //   ],
+      // },
+      // {
+      //   test: /\.css$/, // 处理 css 文件，以及 .vue 文件中的 <style>
+      //   use: [
+      //     'style-loader',
+      //     'css-loader',
+      //     'postcss-loader',
+      //     'vue-style-loader',
+      //   ],
+      // },
       {
         test: /\.(png|jpe?g|gif|svg|ico)(\?.*)?$/,
         loader: 'file-loader',
