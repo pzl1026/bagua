@@ -4,6 +4,29 @@ const plugins = require('./conf/plugins');
 const output = require('./conf/output');
 const performance = require('./conf/performance');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
+const ExtractCssChunksPlugin = require('extract-css-chunks-webpack-plugin');
+
+const cssLoaders = () => {
+  const ssExtUse = ['css-loader', 'postcss-loader', 'sass-loader'];
+  const cssExtUse = ['style-loader', 'css-loader', 'postcss-loader'];
+  if (!isDev) {
+    ssExtUse.unshift(MiniCssExtractPlugin.loader);
+    cssExtUse.shift();
+    cssExtUse.unshift(MiniCssExtractPlugin.loader);
+  }
+
+  return [
+    {
+      test: /\.(s[ac]ss)/i,
+      use: ssExtUse,
+    },
+    {
+      test: /\.css$/, // 处理 css 文件，以及 .vue 文件中的 <style>
+      use: cssExtUse,
+    },
+  ];
+};
 
 module.exports = {
   entry: helper.resolve('./src/index.js'),
@@ -13,13 +36,14 @@ module.exports = {
     modules: ['node_modules'],
     extensions: ['.js', '.jsx', '.vue', '.ts', 'tsx'],
     alias: {
-      // vue$: 'vue/dist/vue.esm.js',
-      // 'vue-router$': 'vue-router/dist/vue-router.js',
+      vue$: 'vue/dist/vue.esm-browser.js',
+      'vue-router$': 'vue-router/dist/vue-router.cjs.js',
       '@': helper.resolve('src'),
     },
   },
   output,
   module: {
+    noParse: /^(vue|vue-router|vuex|lodash|echarts)$/, // 忽略模块编译
     rules: [
       {
         test: /\.js|jsx?$/,
@@ -47,25 +71,7 @@ module.exports = {
         //   },
         // },
       },
-      {
-        test: /\.(s[ac]ss)/i,
-        use: [
-          // MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-          'sass-loader',
-        ],
-      },
-      {
-        test: /\.css$/, // 处理 css 文件，以及 .vue 文件中的 <style>
-        use: [
-          // MiniCssExtractPlugin.loader,
-          'vue-style-loader',
-          'style-loader',
-          'css-loader',
-          'postcss-loader',
-        ],
-      },
+      ...cssLoaders(),
       {
         test: /\.(png|jpe?g|gif|svg|ico)(\?.*)?$/,
         loader: 'file-loader',
@@ -95,10 +101,17 @@ module.exports = {
   },
   plugins: [
     ...plugins,
+    new CompressionPlugin(),
     new MiniCssExtractPlugin({
-      filename: bgCustomConfig.name + '/css/[name].css',
-      chunkFilename: '[id].css',
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: '[name].[contenthash].css',
+      chunkFilename: bgCustomConfig.name + '/css/[id].[contenthash].css',
     }),
+    // new ExtractCssChunksPlugin({
+    //   filename: 'css/[name].[contenthash:8].css',
+    //   chunkFilename: 'css/[name].[contenthash:8].chunk.css',
+    // }),
   ],
   ...performance,
 };

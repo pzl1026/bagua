@@ -1,9 +1,9 @@
 {
   "name": "bagua-cli",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "pzl",
   "bin": {
-    "bagua-cli": "bin/index.js"
+    "bagua-cli2": "bin/index.js"
   },
   "repository": {
     "type": "git",
@@ -16,6 +16,7 @@
     "serve": "serve dist -p 3002",
     "clean": "rm -rf dist"
   },
+  "sideEffects": false,
   "dependencies": {
     "@babel/core": "7.11.4",
     "@vue/compiler-sfc": "^3.0.4",
@@ -23,7 +24,10 @@
     "babel-loader": "8.1.0",
     "chalk": "^4.1.0",
     "clean-webpack-plugin": "^3.0.0",
+    "compression-webpack-plugin": "^7.1.2",
+    "css-minimizer-webpack-plugin": "^1.2.0",
     "download-git-repo": "^3.0.2",
+    "extract-css-chunks-webpack-plugin": "^4.9.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "fs-extra": "^9.0.1",
     "html-webpack-plugin": "^4.5.1",

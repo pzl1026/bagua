@@ -1,4 +1,5 @@
 const TerserPlugin = require('terser-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = isDev
   ? {}
@@ -16,13 +17,14 @@ module.exports = isDev
         },
       },
       optimization: {
+        usedExports: true,
         minimize: true,
-        minimizer: [new TerserPlugin()],
+        minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
         splitChunks: {
           chunks: 'async',
           minSize: 20000,
           minRemainingSize: 0,
-          // maxSize: 400000,
+          // maxSize: 1024 * 1024 * 0.5,
           minChunks: 1,
           maxAsyncRequests: 30,
           maxInitialRequests: 30,
@@ -47,6 +49,12 @@ module.exports = isDev
               test: /[\\/]node_modules[\\/]/,
               priority: -10,
               reuseExistingChunk: true,
+            },
+            styles: {
+              name: 'styles',
+              test: /\.css$/,
+              chunks: 'all',
+              enforce: true,
             },
             default: {
               minChunks: 2,
