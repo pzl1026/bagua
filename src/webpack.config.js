@@ -5,12 +5,18 @@ const performance = require('./conf/performance');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const cssLoaders = () => {
-  const ssExtUse = ['css-loader', 'postcss-loader', 'sass-loader'];
-  const cssExtUse = ['style-loader', 'css-loader', 'postcss-loader'];
+  const ssExtUse = ['style-loader', 'css-loader', 'sass-loader'];
+  const cssExtUse = [
+    'style-loader',
+    'css-loader',
+    'postcss-loader',
+    'vue-style-loader',
+  ];
   if (!isDev) {
-    ssExtUse = [MiniCssExtractPlugin.loader, ...cssExtUse, 'vue-style-loader'];
+    ssExtUse.shift();
+    ssExtUse = [MiniCssExtractPlugin.loader, ...cssExtUse];
     cssExtUse.shift();
-    cssExtUse = [MiniCssExtractPlugin.loader, ...cssExtUse, 'vue-style-loader'];
+    cssExtUse = [MiniCssExtractPlugin.loader, ...cssExtUse];
   }
 
   return [

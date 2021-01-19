@@ -10,11 +10,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const zlib = require('zlib');
 
-console.log(
-  helper.resolve(bgCustomConfig.serverDir + bgCustomConfig.staticDir),
-  'ppp'
-);
-
 let MF_FIELDS = [
   'exposes',
   'filename',
