@@ -1,4 +1,4 @@
-// const TerserPlugin = require('terser-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const ESBuildPlugin = require('esbuild-webpack-plugin').default;
 
@@ -20,35 +20,43 @@ module.exports = isDev
         usedExports: true,
         minimize: true,
         minimizer: [
-          // new TerserPlugin(),
+          new TerserPlugin(),
           new CssMinimizerPlugin(),
-          new ESBuildPlugin(),
+          // new ESBuildPlugin(),
         ],
         splitChunks: {
-          chunks: 'async',
-          minSize: 20000,
-          minRemainingSize: 0,
-          // maxSize: 1024 * 1024 * 0.5,
-          minChunks: 1,
-          maxAsyncRequests: 30,
-          maxInitialRequests: 30,
-          enforceSizeThreshold: 50000,
+          // chunks: 'async',
+          // minSize: 1024 * 100,
+          // minRemainingSize: 0,
+          // // maxSize: 1024 * 1024 * 2,
+          // minChunks: 1,
+          // maxAsyncRequests: 30,
+          // maxInitialRequests: 30,
+          // enforceSizeThreshold: 50000,
+          chunks: 'all',
+          minSize: 30000,
+          maxSize: 3000000,
+          minChunks: Infinity,
+          maxAsyncRequests: 5,
+          maxInitialRequests: 3,
+          // automaticNameDelimiter: '~',
+          // name: 'manifest',
           cacheGroups: {
-            commons: {
-              test: /[\\/]node_modules[\\/]/,
-              // cacheGroupKey here is `commons` as the key of the cacheGroup
-              name(module, chunks, cacheGroupKey) {
-                const moduleFileName = module
-                  .identifier()
-                  .split('/')
-                  .reduceRight((item) => item);
-                const allChunksNames = chunks
-                  .map((item) => item.name)
-                  .join('~');
-                return `${cacheGroupKey}-${allChunksNames}-${moduleFileName}`;
-              },
-              chunks: 'all',
-            },
+            // commons: {
+            //   test: /[\\/]node_modules[\\/]/,
+            //   // cacheGroupKey here is `commons` as the key of the cacheGroup
+            //   name(module, chunks, cacheGroupKey) {
+            //     const moduleFileName = module
+            //       .identifier()
+            //       .split('/')
+            //       .reduceRight((item) => item);
+            //     const allChunksNames = chunks
+            //       .map((item) => item.name)
+            //       .join('~');
+            //     return `${cacheGroupKey}-${allChunksNames}-${moduleFileName}`;
+            //   },
+            //   chunks: 'all',
+            // },
             defaultVendors: {
               test: /[\\/]node_modules[\\/]/,
               priority: -10,

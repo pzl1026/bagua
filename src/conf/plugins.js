@@ -8,7 +8,8 @@ const webpack = require('webpack');
 const helper = require('../helper');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
-const zlib = require('zlib');
+// const zlib = require('zlib');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 let MF_FIELDS = [
   'exposes',
@@ -47,19 +48,20 @@ let plugins = [
 if (!isDev) {
   plugins = [
     ...plugins,
-    new CompressionPlugin({
-      filename: '[path][base].br',
-      algorithm: 'brotliCompress',
-      test: /\.(js|css|html|svg)$/,
-      compressionOptions: {
-        params: {
-          [zlib.constants.BROTLI_PARAM_QUALITY]: 11,
-        },
-      },
-      threshold: 10240,
-      minRatio: 0.8,
-      deleteOriginalAssets: false,
-    }),
+    // new CompressionPlugin({
+    //   filename: '[path][base].br',
+    //   algorithm: 'brotliCompress',
+    //   test: /\.(js|css|html|svg)$/,
+    //   compressionOptions: {
+    //     params: {
+    //       [zlib.constants.BROTLI_PARAM_QUALITY]: 11,
+    //     },
+    //   },
+    //   threshold: 10240,
+    //   minRatio: 0.8,
+    //   deleteOriginalAssets: false,
+    // }),
+    new CompressionPlugin(),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
@@ -88,7 +90,10 @@ if (!isDev) {
         viewDir: bgCustomConfig.serverDir + bgCustomConfig.viewDir,
       },
     ]),
+    // new BundleAnalyzerPlugin({ analyzerPort: 8919 }),
   ];
+} else {
+  plugins = [...plugins, new webpack.HotModuleReplacementPlugin()];
 }
 
 module.exports = plugins;
