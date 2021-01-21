@@ -29,7 +29,6 @@ const cssLoaders = () => {
   ];
 };
 
-console.log();
 module.exports = {
   entry: helper.resolve('./src/index.js'),
   mode: isDev ? 'development' : 'production',
@@ -41,6 +40,7 @@ module.exports = {
       vue$: 'vue/dist/vue.esm-browser.js',
       'vue-router$': 'vue-router/dist/vue-router.cjs.js',
       '@': helper.resolve('src'),
+      echarts$: 'echarts/esm/echarts.js',
     },
   },
   output,

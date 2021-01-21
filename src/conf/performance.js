@@ -3,7 +3,11 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const ESBuildPlugin = require('esbuild-webpack-plugin').default;
 
 module.exports = isDev
-  ? {}
+  ? {
+      optimization: {
+        usedExports: true,
+      },
+    }
   : {
       performance: {
         hints: 'warning',
@@ -11,13 +15,13 @@ module.exports = isDev
         maxEntrypointSize: 10000000,
         //生成文件的最大体积
         maxAssetSize: 30000000,
+        // maxAssetSize: 1024 * 1024 * 3,
         //只给出 js 文件的性能提示
         assetFilter: function (assetFilename) {
           return assetFilename.endsWith('.js');
         },
       },
       optimization: {
-        usedExports: true,
         minimize: true,
         minimizer: [
           new TerserPlugin(),
@@ -25,38 +29,13 @@ module.exports = isDev
           // new ESBuildPlugin(),
         ],
         splitChunks: {
-          // chunks: 'async',
-          // minSize: 1024 * 100,
-          // minRemainingSize: 0,
-          // // maxSize: 1024 * 1024 * 2,
-          // minChunks: 1,
-          // maxAsyncRequests: 30,
-          // maxInitialRequests: 30,
-          // enforceSizeThreshold: 50000,
           chunks: 'all',
           minSize: 30000,
           maxSize: 3000000,
           minChunks: Infinity,
           maxAsyncRequests: 5,
           maxInitialRequests: 3,
-          // automaticNameDelimiter: '~',
-          // name: 'manifest',
           cacheGroups: {
-            // commons: {
-            //   test: /[\\/]node_modules[\\/]/,
-            //   // cacheGroupKey here is `commons` as the key of the cacheGroup
-            //   name(module, chunks, cacheGroupKey) {
-            //     const moduleFileName = module
-            //       .identifier()
-            //       .split('/')
-            //       .reduceRight((item) => item);
-            //     const allChunksNames = chunks
-            //       .map((item) => item.name)
-            //       .join('~');
-            //     return `${cacheGroupKey}-${allChunksNames}-${moduleFileName}`;
-            //   },
-            //   chunks: 'all',
-            // },
             defaultVendors: {
               test: /[\\/]node_modules[\\/]/,
               priority: -10,
