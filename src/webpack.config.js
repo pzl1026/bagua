@@ -40,7 +40,7 @@ module.exports = {
       vue$: 'vue/dist/vue.esm-browser.js',
       'vue-router$': 'vue-router/dist/vue-router.cjs.js',
       '@': helper.resolve('src'),
-      echarts$: 'echarts/esm/echarts.js',
+      echarts$: 'echarts/dist/echarts.esm.js',
     },
   },
   output,
