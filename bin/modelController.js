@@ -1,3 +1,16 @@
+const chalk = require('chalk');
+const emoji = require('node-emoji');
+
+if (program.devConf === true || program.buildConf === true) {
+  const emojified = emoji.emojify(':grin:', (name) => name);
+  console.warn(
+    emojified +
+      chalk.yellow(
+        '你还没有制定当前编译环境（如st1，st2等）,将默认使用default配置'
+      )
+  );
+}
+
 domainEnv = program.devConf || program.buildConf || 'default';
 
 function getConfig(env) {

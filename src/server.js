@@ -35,7 +35,7 @@ const options = {
   },
   hot: true,
   compress: true,
-  open: bgCustomConfig.isTop,
+  open: bgCustomConfig.autoOpen,
   overlay: true,
   // progress: true,
   publicPath: '/',

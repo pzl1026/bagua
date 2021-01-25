@@ -1,4 +1,6 @@
 const path = require('path');
+const chalk = require('chalk');
+const emoji = require('node-emoji');
 const noWpConfig = [
   'name',
   'isTop',
@@ -17,6 +19,7 @@ const noWpConfig = [
   'staticDir',
   'serverDir',
   'viewDir',
+  'analyzerOpen',
 ];
 
 function resolve(dir) {
@@ -50,6 +53,7 @@ function getConfig(
   isWebpackConfig
 ) {
   let o = {};
+
   for (let i in baguaObj) {
     if (
       (isWebpackConfig ? !noWpConfig.includes(i) : noWpConfig.includes(i)) &&
@@ -59,8 +63,18 @@ function getConfig(
     }
   }
 
-  if (!baguaObj[env]) return o;
-  let domainEnvConfig = baguaObj[env][domainEnv];
+  if (!baguaObj[env]) {
+    const emojified = emoji.emojify(':grin:', (name) => name);
+    console.warn(emojified + chalk.yellow('你还未设置dev或prod的配置'));
+    return o;
+  }
+
+  //  判断是否选用了环境，没有将默认使用default配置，否则将default配置与环境配置相结合
+  let domainEnvConfig =
+    domainEnv != 'default'
+      ? Object.assign({}, baguaObj[env]['default'], baguaObj[env][domainEnv])
+      : baguaObj[env]['default'];
+
   for (let i in domainEnvConfig) {
     if (isWebpackConfig ? !noWpConfig.includes(i) : noWpConfig.includes(i)) {
       o[i] = domainEnvConfig[i];

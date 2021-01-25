@@ -10,8 +10,9 @@ const helper = require('../helper');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const fs = require('fs');
+const emoji = require('node-emoji');
+const chalk = require('chalk');
 // const zlib = require('zlib');
-// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 let MF_FIELDS = [
   'exposes',
@@ -48,9 +49,24 @@ let plugins = [
 ];
 
 if (!isDev) {
-  if (!fs.existsSync(helper.resolve('static'))) {
-    throw Error(bgCustomConfig.name + ' static 目录不存在');
+  const staticDir = helper.resolve('static');
+  // 对static目录判断是否需要处理
+  if (fs.existsSync(staticDir)) {
+    const sdFiles = fs.readdirSync(staticDir);
+    if (sdFiles.length) {
+      plugins.push(
+        new CopyWebpackPlugin({
+          patterns: [{ from: 'static', to: bgCustomConfig.name + '/static' }],
+        })
+      );
+    }
   }
+
+  if (bgCustomConfig.analyzerOpen) {
+    const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+    plugins.push(new BundleAnalyzerPlugin({ analyzerPort: 8919 }));
+  }
+
   plugins = [
     ...plugins,
     // new CompressionPlugin({
@@ -87,9 +103,7 @@ if (!isDev) {
       dependenciesCount: 10000,
       percentBy: null,
     }),
-    new CopyWebpackPlugin({
-      patterns: [{ from: 'static', to: bgCustomConfig.name + '/static' }],
-    }),
+
     new CopyPlugin([
       {
         from: 'dist',
