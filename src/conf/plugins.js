@@ -4,6 +4,7 @@ const ModuleFederationPlugin = require('webpack').container
 const { VueLoaderPlugin } = require('vue-loader');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('../plugins/copy');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 const helper = require('../helper');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -81,6 +82,9 @@ if (!isDev) {
       dependencies: true,
       dependenciesCount: 10000,
       percentBy: null,
+    }),
+    new CopyWebpackPlugin({
+      patterns: [{ from: 'static', to: bgCustomConfig.name + '/static' }],
     }),
     new CopyPlugin([
       {

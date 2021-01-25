@@ -8,7 +8,7 @@ const compiler = webpack(config);
 // const conf = require('./bin/conf');
 // const helper = require('./helper');
 // const CWD = process.cwd();
-let devServer = bgCustomConfig.nomocker
+let devServer = !bgCustomConfig.nomocker
   ? {
       before: function (app) {
         apiMocker(

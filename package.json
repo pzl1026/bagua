@@ -24,6 +24,7 @@
     "chalk": "^4.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "compression-webpack-plugin": "^7.1.2",
+    "copy-webpack-plugin": "^7.0.0",
     "css-minimizer-webpack-plugin": "^1.2.0",
     "download-git-repo": "^3.0.2",
     "esbuild-webpack-plugin": "^1.1.0",
