@@ -9,6 +9,7 @@ const webpack = require('webpack');
 const helper = require('../helper');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const fs = require('fs');
 // const zlib = require('zlib');
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
@@ -47,6 +48,9 @@ let plugins = [
 ];
 
 if (!isDev) {
+  if (!fs.existsSync(helper.resolve('static'))) {
+    throw Error(bgCustomConfig.name + ' static 目录不存在');
+  }
   plugins = [
     ...plugins,
     // new CompressionPlugin({
