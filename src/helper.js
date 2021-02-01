@@ -4,6 +4,7 @@ const emoji = require('node-emoji');
 const noWpConfig = [
   'name',
   'isTop',
+  'autoOpen',
   'domains',
   'nomocker',
   'port',
