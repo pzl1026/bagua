@@ -12,7 +12,7 @@ const cssLoaders = () => {
     'sass-loader',
   ];
   const cssExtUse = [
-    'vue-style-loader',
+    // 'vue-style-loader',
     isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
     'css-loader',
     'postcss-loader',
