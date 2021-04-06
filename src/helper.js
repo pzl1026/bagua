@@ -1,7 +1,7 @@
 const path = require('path');
 const chalk = require('chalk');
 const emoji = require('node-emoji');
-const execa = require('execa');
+const fs = require('fs');
 const noWpConfig = [
   'name',
   'isTop',
@@ -102,29 +102,13 @@ const progress = (percentage, message, ...args) => {
   console.info(percentage, message, ...args);
 };
 
-// 安装mode_modules
-async function install(path) {
-  return new Promise(async (resolve, reject) => {
-    const { stdout } = await execa('npm', ['install'], {
-      stdio: 'inherit',
-      cwd: path,
-    });
-
-    if (!stdout) {
-      resolve({
-        path,
-        desc: `${path} 的node_modules安装完成。`,
-        success: true,
-      });
-    } else {
-      reject({
-        path,
-        desc: `${path} 的node_modules安装失败。`,
-        success: false,
-      });
-      throw new Error(stdout);
-    }
+// 获取所有的models
+function getModels() {
+  const models = fs.readdirSync('./').filter((f) => {
+    return fs.statSync(f).isDirectory() && f != 'node_modules';
   });
+  models.push('./');
+  return models;
 }
 
 module.exports = {
@@ -133,5 +117,5 @@ module.exports = {
   progress,
   getWpConfig,
   getCustomConfig,
-  install,
+  getModels,
 };

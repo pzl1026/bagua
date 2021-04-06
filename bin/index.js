@@ -32,6 +32,17 @@ if (type == 'createmodel') {
   return;
 }
 
+if (type == 'uninstallall') {
+  require('../src/repo/clearnodemodules');
+  return;
+}
+
+if (type == 'installall') {
+  const { installAll } = require('../src/repo/install');
+  installAll();
+  return;
+}
+
 baguaObj = require(helper.resolve('.bagua.js'));
 bgCustomConfig = helper.getCustomConfig(baguaObj);
 if (bgCustomConfig.packageScope) {

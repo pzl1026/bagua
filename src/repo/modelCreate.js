@@ -7,7 +7,6 @@ const inquirer = require('inquirer');
 const emoji = require('node-emoji');
 const promptList = require('./promptList.config');
 const configChange = require('./configChange');
-// const install = require('./install');
 let [type, value] = program.args;
 const pName = 'mqj';
 

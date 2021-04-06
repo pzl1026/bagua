@@ -15,7 +15,9 @@ program
   .command('init <source> [destination]')
   .command('createmodel <source> [destination]')
   .command('tempServe <source> [destination]')
-  .command('staticServe <source> [destination]');
+  .command('staticServe <source> [destination]')
+  .command('uninstallall <source> [destination]') //删除所有的node_modules
+  .command('installall <source> [destination]'); //安装所有的node_modules
 
 program.parse(process.argv);
 

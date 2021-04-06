@@ -3,52 +3,14 @@ const pathResolve = (name) => require('path').resolve(name);
 const chalk = require('chalk');
 const ora = require('ora');
 const helper = require('../helper');
+const { installAll } = require('./install');
 const fs = require('fs');
 const execa = require('execa');
 const emoji = require('node-emoji');
 const configChange = require('./configChange');
-// const install = require('./install');
-// const installAll = require('./installAll');
 const { exit } = require('process');
 let [type, value] = program.args;
 const pName = value || 'mqj';
-
-function getModels() {
-  const models = fs.readdirSync('./').filter((f) => {
-    return fs.statSync(f).isDirectory() && f != 'node_modules';
-  });
-  models.push('./');
-  return models;
-}
-
-// 安装所有模块的modules
-async function installAll() {
-  return new Promise(async (resolve, reject) => {
-    const models = getModels();
-    let successCount = 0;
-    for (let m of models) {
-      console.log(
-        emoji.get(':palm_tree:') + chalk.yellow(`正在安装${m}的node_modules...`)
-      );
-      let res = await helper.install(pathResolve(m));
-      if (res.success) {
-        successCount++;
-        console.log(emoji.get(':smile:') + chalk.green(res.desc));
-        if (successCount == models.length) {
-          console.log(
-            emoji.get(':smile:') + chalk.green('所有node_modules安装成功')
-          );
-          resolve(true);
-        }
-      } else {
-        console.log(emoji.get(':smile:') + chalk.green(res.desc));
-        resolve(false);
-        break;
-        process.exit();
-      }
-    }
-  });
-}
 
 // 创建项目
 function createProject() {
