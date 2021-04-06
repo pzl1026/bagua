@@ -109,7 +109,7 @@ if (!isDev) {
         from: 'dist',
         to: bgCustomConfig.serverDir + bgCustomConfig.staticDir,
         module: bgCustomConfig.name,
-        viewDir: bgCustomConfig.serverDir + bgCustomConfig.viewDir,
+        viewDir: bgCustomConfig.serverDir + (bgCustomConfig.viewDir || '/view'),
       },
     ]),
     // new BundleAnalyzerPlugin({ analyzerPort: 8919 }),
