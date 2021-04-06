@@ -1,14 +1,54 @@
 const download = require('download-git-repo');
+const pathResolve = (name) => require('path').resolve(name);
 const chalk = require('chalk');
 const ora = require('ora');
 const helper = require('../helper');
 const fs = require('fs');
+const execa = require('execa');
+const emoji = require('node-emoji');
 const configChange = require('./configChange');
-const install = require('./install');
-const installAll = require('./installAll');
+// const install = require('./install');
+// const installAll = require('./installAll');
 const { exit } = require('process');
 let [type, value] = program.args;
 const pName = value || 'mqj';
+
+function getModels() {
+  const models = fs.readdirSync('./').filter((f) => {
+    return fs.statSync(f).isDirectory() && f != 'node_modules';
+  });
+  models.push('./');
+  return models;
+}
+
+// 安装所有模块的modules
+async function installAll() {
+  return new Promise(async (resolve, reject) => {
+    const models = getModels();
+    let successCount = 0;
+    for (let m of models) {
+      console.log(
+        emoji.get(':palm_tree:') + chalk.yellow(`正在安装${m}的node_modules...`)
+      );
+      let res = await helper.install(pathResolve(m));
+      if (res.success) {
+        successCount++;
+        console.log(emoji.get(':smile:') + chalk.green(res.desc));
+        if (successCount == models.length) {
+          console.log(
+            emoji.get(':smile:') + chalk.green('所有node_modules安装成功')
+          );
+          resolve(true);
+        }
+      } else {
+        console.log(emoji.get(':smile:') + chalk.green(res.desc));
+        resolve(false);
+        break;
+        process.exit();
+      }
+    }
+  });
+}
 
 // 创建项目
 function createProject() {
@@ -26,7 +66,6 @@ function createProject() {
       process.exit();
       return;
     }
-    // let currDirArgs = helper.resolve().split();
     let currentDir = helper.resolve(value);
 
     async function doProject() {
@@ -63,22 +102,13 @@ function createProject() {
           }
         });
 
-        spinner = ora(chalk.yellow()).start();
-        spinner.color = 'yellow';
-        spinner.text = chalk.blue(`正在安装${pName}的modules...`);
-        let end = await install(value);
-        if (end) {
-          spinner.text = chalk.blue(`已完成${pName}的modules的安装！！`);
-          spinner.succeed();
-
-          let end2 = await installAll(value);
-          if (end2.every((success) => success)) {
-            spinner = ora(chalk.yellow()).start();
-            spinner.text = chalk.green('项目创建成功！！');
-            spinner.stop();
-            spinner.clear();
-            process.exit();
-          }
+        let installSuccess = await installAll();
+        if (installSuccess) {
+          spinner = ora(chalk.yellow()).start();
+          spinner.text = chalk.green('项目创建成功！');
+          spinner.stop();
+          spinner.clear();
+          process.exit();
         }
       } catch (err) {
         throw err;

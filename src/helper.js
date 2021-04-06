@@ -1,6 +1,7 @@
 const path = require('path');
 const chalk = require('chalk');
 const emoji = require('node-emoji');
+const execa = require('execa');
 const noWpConfig = [
   'name',
   'isTop',
@@ -101,10 +102,36 @@ const progress = (percentage, message, ...args) => {
   console.info(percentage, message, ...args);
 };
 
+// 安装mode_modules
+async function install(path) {
+  return new Promise(async (resolve, reject) => {
+    const { stdout } = await execa('npm', ['install'], {
+      stdio: 'inherit',
+      cwd: path,
+    });
+
+    if (!stdout) {
+      resolve({
+        path,
+        desc: `${path} 的node_modules安装完成。`,
+        success: true,
+      });
+    } else {
+      reject({
+        path,
+        desc: `${path} 的node_modules安装失败。`,
+        success: false,
+      });
+      throw new Error(stdout);
+    }
+  });
+}
+
 module.exports = {
   getPublicPathAndBase,
   resolve,
   progress,
   getWpConfig,
   getCustomConfig,
+  install,
 };
