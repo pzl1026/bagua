@@ -66,8 +66,10 @@ function getConfig(
   }
 
   if (!baguaObj[env]) {
-    const emojified = emoji.emojify(':grin:', (name) => name);
-    console.warn(emojified + chalk.yellow('你还未设置dev或prod的配置'));
+    if (baguaObj.name) {
+      const emojified = emoji.emojify(':grin:', (name) => name);
+      console.warn(emojified + chalk.yellow('你还未设置dev或prod的配置'));
+    }
     return o;
   }
 
@@ -105,7 +107,7 @@ const progress = (percentage, message, ...args) => {
 // 获取所有的models
 function getModels() {
   const models = fs.readdirSync('./').filter((f) => {
-    return fs.statSync(f).isDirectory() && f != 'node_modules';
+    return fs.statSync(f).isDirectory() && f != 'node_modules' && f != '.git';
   });
   models.push('./');
   return models;
