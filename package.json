@@ -3,7 +3,7 @@
   "version": "0.2.5",
   "author": "pzl",
   "bin": {
-    "bagua-cli2": "bin/index.js"
+    "bagua-cli": "bin/index.js"
   },
   "repository": {
     "type": "git",

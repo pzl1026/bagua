@@ -14,6 +14,7 @@ program
   // .option('-i, --lernaInstall', 'lerna install for packages')
   .command('init <source> [destination]')
   .command('createmodel <source> [destination]')
+  .command('createpage <source> [destination]')
   .command('tempServe <source> [destination]')
   .command('staticServe <source> [destination]')
   .command('uninstallall <source> [destination]') //删除所有的node_modules

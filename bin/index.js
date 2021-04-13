@@ -12,6 +12,11 @@ if (type == 'init') {
   return;
 }
 
+if (type == 'createpage') {
+  require('../src/repo/pageCreate');
+  return;
+}
+
 if (type == 'tmpServe') {
   require('../src/prod/tmpServe');
   return;
