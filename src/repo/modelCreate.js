@@ -4,6 +4,7 @@ const ora = require('ora');
 const helper = require('../helper');
 const fs = require('fs');
 const inquirer = require('inquirer');
+const { install } = require('./install');
 const emoji = require('node-emoji');
 const promptList = require('./promptList.config');
 const configChange = require('./configChange');
@@ -56,8 +57,12 @@ function createProject(frame) {
         emoji.get(':palm_tree:') +
           chalk.yellow(`开始安装${value}的node_modules...`)
       );
-      let end = await helper.install(helper.resolve(value));
+      let end = await install(helper.resolve(value));
       if (end) {
+        console.log(
+          emoji.get(':palm_tree:') +
+            chalk.yellow('模块创建完成，可能需要修改.bagua.js的port端口')
+        );
         spinner.stop();
         spinner.clear();
         process.exit();
