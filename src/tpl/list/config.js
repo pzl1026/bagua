@@ -47,6 +47,11 @@ export const formItems = [
 
 export const columns = [
   {
+    title: '操作',
+    dataIndex: 'action',
+    slots: { customRender: 'action' },
+  },
+  {
     title: '姓名',
     dataIndex: 'name',
     key: 'name',

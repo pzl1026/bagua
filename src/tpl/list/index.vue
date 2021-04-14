@@ -1,6 +1,10 @@
 <template>
   <div>
-    <SearchTable :formItems="formItems" :columns="columns" :api="getData" />
+    <SearchTable :formItems="formItems" :columns="columns" :api="getData">
+      <template #action>
+        <a>操作</a>
+      </template>
+    </SearchTable>
   </div>
 </template>
 
