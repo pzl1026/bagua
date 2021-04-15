@@ -40,7 +40,9 @@ const config = merge(
       extensions: ['.js', '.jsx', '.vue', '.ts', 'tsx'],
       alias: {
         vue$: 'vue/dist/vue.esm-browser.js',
+        'ant-design-vue$': 'ant-design-vue/es/index.js',
         'vue-router$': 'vue-router/dist/vue-router.cjs.js',
+        // '@ant-design/icons-vue': '@ant-design/icons-vue/es',
         '@': helper.resolve('src'),
         echarts$: 'echarts/dist/echarts.simple.js',
       },
@@ -57,9 +59,6 @@ const config = merge(
             helper.resolve('src'),
             helper.resolve('node_modules/webpack-dev-server/client'),
           ],
-          options: {
-            presets: ['@babel/preset-react'],
-          },
         },
         {
           test: /\.vue$/,
