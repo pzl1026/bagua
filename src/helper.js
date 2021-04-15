@@ -107,7 +107,12 @@ const progress = (percentage, message, ...args) => {
 // 获取所有的models
 function getModels() {
   const models = fs.readdirSync('./').filter((f) => {
-    return fs.statSync(f).isDirectory() && f != 'node_modules' && f != '.git';
+    return (
+      fs.statSync(f).isDirectory() &&
+      f != 'node_modules' &&
+      f != '.git' &&
+      f != 'output'
+    );
   });
   models.push('./');
   return models;
