@@ -1,0 +1,29 @@
+const dataSource = [
+  {
+    key: '1',
+    name: '胡彦斌',
+    age: 32,
+    address: '西湖区湖底公园1号',
+  },
+  {
+    key: '2',
+    name: '胡彦祖',
+    age: 42,
+    address: '西湖区湖底公园1号',
+  },
+];
+
+export const getData = () => {
+  return new Promise((resolve) => {
+    resolve({
+      code:0,
+      msg:'',
+      data: {
+        list: dataSource,
+        page_size: 10,
+        page: 1,
+        total: 100
+      }
+    })
+  })
+}
