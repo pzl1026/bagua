@@ -98,7 +98,6 @@ export const formItems = [
     value: [],
     valueFields: ['startTime', 'endTime'],
     valueType: 'string',
-    value: [],
     type: 'range-picker',
     format: 'YYYY-MM-DD HH:mm:ss',
   },
