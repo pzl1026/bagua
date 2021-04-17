@@ -3,7 +3,7 @@ export const formItems = [
     label: '名称',
     name: 'username',
     value: 'mingcheng',
-    type: 'input'
+    type: 'input',
   },
   {
     label: '类型',
@@ -19,83 +19,88 @@ export const formItems = [
       options: [
         {
           label: '启用',
-          value: 1
+          value: 1,
         },
         {
           label: '禁用',
-          value: 0
-        }
-      ]
-    }
+          value: 0,
+        },
+      ],
+    },
   },
   {
     label: '类型多选',
     name: 'multitype',
     value: [],
     type: 'select',
-    itemProps:{
+    itemProps: {
       mode: 'multiple',
       options: [
         {
           label: '选项1',
-          value: 1
+          value: 1,
         },
         {
           label: '选项2',
-          value: 0
+          value: 0,
         },
         {
           label: '选项3',
-          value: 0
-        }
-      ]
-    }
+          value: 0,
+        },
+      ],
+    },
   },
   {
     label: '多选',
     name: 'checks',
     value: [],
     type: 'checkbox-group',
-    itemProps:{
+    itemProps: {
       options: [
         {
           label: '选项1',
-          value: 1
+          value: 1,
         },
         {
           label: '选项2',
-          value: 2
+          value: 2,
         },
         {
           label: '选项3',
-          value: 3
-        }
-      ]
-    }
+          value: 3,
+        },
+      ],
+    },
   },
   {
     label: '是否',
     name: 'is',
     value: 1,
-    type: 'switch'
+    type: 'switch',
   },
   {
     label: '文本',
     name: 'text',
     value: '',
-    type: 'textarea'
+    type: 'textarea',
   },
   {
     label: '日期',
     name: 'date',
-    value: '',
-    type: 'date-picker'
+    type: 'date-picker',
+    valueType: 'number',
+    format: 'YYYY-MM-DD HH:mm:ss',
   },
   {
     label: '日期范围',
     name: 'dateRange',
     value: [],
-    type: 'range-picker'
+    valueFields: ['startTime', 'endTime'],
+    valueType: 'string',
+    value: [],
+    type: 'range-picker',
+    format: 'YYYY-MM-DD HH:mm:ss',
   },
   {
     label: '其他',
@@ -179,5 +184,5 @@ export const formItems2Rules = {
       message: 'Please input activity form',
       trigger: 'blur',
     },
-  ]
+  ],
 };
