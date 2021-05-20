@@ -34,15 +34,17 @@ const config = merge(
   {
     entry: helper.resolve('./src/index.js'),
     mode: isDev ? 'development' : 'production',
-    devtool: isDev ? 'cheap-module-source-map' : 'eval-cheap-module-source-map',
+    // devtool: isDev ? 'cheap-module-source-map' : 'eval-cheap-module-source-map',
     resolve: {
       modules: ['node_modules'],
       extensions: ['.js', '.jsx', '.vue', '.ts', 'tsx'],
       alias: {
         vue$: 'vue/dist/vue.esm-browser.js',
+        axios$: 'axios/dist/axios.js',
+        moment$: 'moment/dist/moment.js',
         'ant-design-vue$': 'ant-design-vue/es/index.js',
         'vue-router$': 'vue-router/dist/vue-router.cjs.js',
-        // '@ant-design/icons-vue': '@ant-design/icons-vue/es',
+        '@ant-design/icons-vue$': '@ant-design/icons-vue/lib',
         '@': helper.resolve('src'),
         echarts$: 'echarts/dist/echarts.simple.js',
       },
@@ -117,5 +119,9 @@ const config = merge(
   },
   bgWpConfig
 );
+
+if (isDev) {
+  config.devtool = 'cheap-module-source-map';
+}
 
 module.exports = config;
