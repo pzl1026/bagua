@@ -40,9 +40,7 @@ Copy.prototype.apply = function (compiler) {
         option.to + '/' + option.module
       );
 
-      fs.remove(moduleDir, (err) => {
-        if (err) return console.error(err);
-
+      function copyStart() {
         fs.copy(
           path.join(compiler.context, option.from + '/' + option.module),
           path.join(compiler.context, option.to + '/' + option.module),
@@ -82,7 +80,16 @@ Copy.prototype.apply = function (compiler) {
               chalk.red('    ' + option.from + ' => ' + option.to + ' Failure!')
             );
           });
-      });
+      }
+
+      if (fs.pathExistsSync(moduleDir)) {
+        fs.remove(moduleDir, (err) => {
+          if (err) return console.error(err);
+          copyStart();
+        });
+      } else {
+        copyStart();
+      }
     });
   });
 };
