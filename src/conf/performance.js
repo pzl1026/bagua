@@ -1,6 +1,6 @@
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const ESBuildPlugin = require('esbuild-webpack-plugin').default;
+// const ESBuildPlugin = require('esbuild-webpack-plugin').default;
 
 module.exports = isDev
   ? {
