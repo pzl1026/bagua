@@ -46,6 +46,7 @@ const config = merge(
         'vue-router$': 'vue-router/dist/vue-router.cjs.js',
         '@ant-design/icons-vue$': '@ant-design/icons-vue/lib',
         '@': helper.resolve('src'),
+        '@n': helper.resolve('node_modules'),
         echarts$: 'echarts/dist/echarts.simple.js',
       },
     },
