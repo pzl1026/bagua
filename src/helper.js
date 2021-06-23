@@ -2,6 +2,8 @@ const path = require('path');
 const chalk = require('chalk');
 const emoji = require('node-emoji');
 const fs = require('fs');
+const { v4: uuidv4 } = require('uuid');
+
 const noWpConfig = [
   'name',
   'isTop',
@@ -118,6 +120,11 @@ function getModels() {
   return models;
 }
 
+// 生成一个随机版本号
+function randomVersion() {
+  return uuidv4();
+}
+
 module.exports = {
   getPublicPathAndBase,
   resolve,
@@ -125,4 +132,5 @@ module.exports = {
   getWpConfig,
   getCustomConfig,
   getModels,
+  randomVersion,
 };

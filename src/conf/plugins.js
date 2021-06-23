@@ -1,6 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ModuleFederationPlugin = require('webpack').container
-  .ModuleFederationPlugin;
+const ModuleFederationPlugin =
+  require('webpack').container.ModuleFederationPlugin;
 const { VueLoaderPlugin } = require('vue-loader');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('../plugins/copy');
@@ -37,7 +37,7 @@ for (let [key, value] of Object.entries(bgCustomConfig)) {
 
 let plugins = [
   new ModuleFederationPlugin(mf),
-  new CleanWebpackPlugin(),
+  // new CleanWebpackPlugin(),
   new VueLoaderPlugin(),
   new HtmlWebpackPlugin({
     template: helper.resolve('./index.html'),

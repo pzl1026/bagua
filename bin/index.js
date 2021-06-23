@@ -2,9 +2,17 @@
 
 program = require('./program');
 helper = require('../src/helper');
-const { v4: uuidv4 } = require('uuid');
+const path = require('path');
 
-global.VERSION = uuidv4();
+// 生产的remoEntry的版本
+function getVersion() {
+  const conf = require('dotenv').config({
+    path: path.resolve(process.cwd(), './.env'),
+  });
+  global.VERSION = conf.parsed && conf.parsed.version;
+}
+
+getVersion();
 
 let type = program.args[0];
 if (type == 'init') {
