@@ -25,6 +25,11 @@ const noWpConfig = [
   'viewDir',
   'analyzerOpen',
   'isModuleFederation',
+  'tmpDir',
+  'staticDir',
+  'serverStaticPort',
+  'serverTemplatePort',
+  'assetsDir',
 ];
 
 function resolve(dir) {
