@@ -14,29 +14,8 @@ const emoji = require('node-emoji');
 const chalk = require('chalk');
 // const zlib = require('zlib');
 
-let MF_FIELDS = [
-  'exposes',
-  'filename',
-  'library',
-  'name',
-  'remoteType',
-  'remotes',
-  'shareScope',
-  'shared',
-];
-
-let mf = {
-  // filename: 'remoteEntry.js',
-};
-
-for (let [key, value] of Object.entries(bgCustomConfig)) {
-  if (MF_FIELDS.includes(key)) {
-    mf[key] = value;
-  }
-}
-
 let plugins = [
-  new ModuleFederationPlugin(mf),
+  // new ModuleFederationPlugin(mf),
   // new CleanWebpackPlugin(),
   new VueLoaderPlugin(),
   new HtmlWebpackPlugin({
@@ -47,6 +26,30 @@ let plugins = [
   //   __VUE_PROD_DEVTOOLS__: 'false',
   // }),
 ];
+
+if (bgCustomConfig.isModuleFederation !== false) {
+  let MF_FIELDS = [
+    'exposes',
+    'filename',
+    'library',
+    'name',
+    'remoteType',
+    'remotes',
+    'shareScope',
+    'shared',
+  ];
+
+  let mf = {
+    // filename: 'remoteEntry.js',
+  };
+
+  for (let [key, value] of Object.entries(bgCustomConfig)) {
+    if (MF_FIELDS.includes(key)) {
+      mf[key] = value;
+    }
+  }
+  plugins.push(new ModuleFederationPlugin(mf));
+}
 
 if (!isDev) {
   const staticDir = helper.resolve('static');
@@ -110,6 +113,7 @@ if (!isDev) {
         to: bgCustomConfig.serverDir + bgCustomConfig.staticDir,
         module: bgCustomConfig.name,
         viewDir: bgCustomConfig.serverDir + (bgCustomConfig.viewDir || '/view'),
+        isModuleFederation: bgCustomConfig.isModuleFederation,
       },
     ]),
     // new BundleAnalyzerPlugin({ analyzerPort: 8919 }),

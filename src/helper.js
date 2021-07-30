@@ -24,6 +24,7 @@ const noWpConfig = [
   'serverDir',
   'viewDir',
   'analyzerOpen',
+  'isModuleFederation',
 ];
 
 function resolve(dir) {

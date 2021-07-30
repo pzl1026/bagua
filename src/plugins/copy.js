@@ -53,7 +53,10 @@ Copy.prototype.apply = function (compiler) {
               )
             );
 
-            if (option.module == 'common') {
+            if (
+              option.module == 'common' ||
+              option.isModuleFederation === false
+            ) {
               fs.copy(
                 path.join(compiler.context, option.from + '/index.html'),
                 path.join(

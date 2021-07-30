@@ -22,12 +22,11 @@ let devServer = !bgCustomConfig.nomocker
       },
     }
   : bgWpConfig.devServer;
-
 const options = {
   watchOptions: {
     ignored: /node_modules/,
-    aggregateTimeout: 100,
-    poll: 100,
+    // aggregateTimeout: 100,
+    // poll: 100,
   },
   disableHostCheck: true,
   historyApiFallback: {
