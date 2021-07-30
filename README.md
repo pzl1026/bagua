@@ -83,62 +83,107 @@ vcmqj -b [生产环境] // 如st
 ```js
 // 可自定义配置webpack属性
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
-  name: 'vue',
-  isTop: false,
-  shared: [{ vue: { singleton: true } }],
+  name: 'common',
+  autoOpen: true, // 是否自动打开浏览器
+  staticDir: '/static/demo', // 以serverDir为base，静态资源目录
+  viewDir: '/view', // 以serverDir为base，index.html目录
+  serverDir: './output', // 输出目录
+  isModuleFederation: false, //判断是否是模块联邦模式的项目
+  serverTemplatePort: '3000', // html服务启动端口，模拟真实服务器
+  serverStaticPort: '8080', // 静态资源服务启动端口，模拟真实服务器
+  staticDir: 'output/static', // 静态资源服务启动目录，模拟真实服务器
+  tmpDir: 'output/view', // html服务启动目录，模拟真实服务器
+  shared: {
+    vue: { singleton: true },
+    'vue-router': { singleton: true },
+    'ant-design-vue': { singleton: true },
+  },
+  // library: { type: "var", name: "common" },
   dev: {
     st1: {
-      port: '3003',
-      nomocker: false,
-      exposes: {
-        './Widget': path.resolve(__dirname, 'src/index'),
-      },
-      remotes: {
-        app2: 'react@http://localhost:3002/remoteEntry.js',
-      },
       devServer: {
         proxy: {
           '/api': {
             target: 'http://st1-api.mingqijia.com/',
             changeOrigin: true,
+            pathRewrite: {
+              '^/api': '',
+            },
           },
         },
-      },
-      output: {
-        publicPath: '//localhost:3003/',
       },
     },
     default: {
-      port: '3003',
-      nomocker: false,
-      devServer: {
-        proxy: {
-          '/api': {
-            target: 'http://st1-api.mingqijia.com/',
-            changeOrigin: true,
-          },
-        },
+      port: '3001',
+      nomocker: true,
+      filename: `${VERSION}.remoteEntry.js`,
+      remotes: {
+        asst: `asst@//localhost:3004/${VERSION}.remoteEntry.js`,
+      },
+      exposes: {
+        './util': path.resolve(__dirname, 'src/util'),
       },
       output: {
-        publicPath: '//localhost:3003/',
+        // publicPath: '//10.110.2.76:3001/',
+        publicPath: '//localhost:3001/',
       },
+      plugins: [
+        new webpack.DefinePlugin({
+          NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+          PROD_ENV: JSON.stringify(process.env.PROD_ENV),
+        }),
+      ],
     },
   },
   prod: {
-    st1: {
-      exposes: {
-        './Widget': path.resolve(__dirname, 'src/index'),
+    prod: {
+      remotes: {
+        asst: `asst@//static-h5.towngasvcc.com/asst/asst/js/${VERSION}.remoteEntry.js?v=${VERSION}`,
       },
       output: {
-        publicPath: '//localhost:3001/vue/',
+        publicPath: '//static-h5.towngasvcc.com/asst/',
+      },
+    },
+    pre: {
+      remotes: {
+        asst: `asst@//pre-static.mingqijia.com/asst/asst/js/${VERSION}.remoteEntry.js?v=${VERSION}`,
+      },
+      output: {
+        publicPath: '//pre-static.mingqijia.com/asst/',
+      },
+    },
+    st1: {
+      remotes: {
+        asst: `asst@//st1-static.mingqijia.com/asst/asst/js/${VERSION}.remoteEntry.js?v=${VERSION}`,
+      },
+      output: {
+        publicPath: '//st1-static.mingqijia.com/asst/',
+      },
+    },
+
+    local: {
+      remotes: {
+        asst: `asst@//localhost:8080/asst/asst/js/${VERSION}.remoteEntry.js?v=${VERSION}`,
       },
     },
     default: {
-      output: {
-        publicPath: '//localhost:3003/',
+      filename: `common/js/${VERSION}.remoteEntry.js`,
+      exposes: {
+        './util': path.resolve(__dirname, 'src/util'),
+        './components': path.resolve(__dirname, 'src/components'),
       },
+      output: {
+        publicPath: '//localhost:8080/asst/',
+      },
+      plugins: [
+        new webpack.DefinePlugin({
+          NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+          PROD_ENV: JSON.stringify(process.env.PROD_ENV),
+        }),
+      ],
     },
   },
 };
