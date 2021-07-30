@@ -141,26 +141,26 @@ module.exports = {
   prod: {
     prod: {
       remotes: {
-        asst: `asst@//static-h5.towngasvcc.com/asst/asst/js/${VERSION}.remoteEntry.js?v=${VERSION}`,
+        asst: `asst@//xxx.com/asst/asst/js/${VERSION}.remoteEntry.js?v=${VERSION}`,
       },
       output: {
-        publicPath: '//static-h5.towngasvcc.com/asst/',
+        publicPath: '//xxx.com/asst/',
       },
     },
     pre: {
       remotes: {
-        asst: `asst@//pre-static.mingqijia.com/asst/asst/js/${VERSION}.remoteEntry.js?v=${VERSION}`,
+        asst: `asst@//xxx.com/asst/asst/js/${VERSION}.remoteEntry.js?v=${VERSION}`,
       },
       output: {
-        publicPath: '//pre-static.mingqijia.com/asst/',
+        publicPath: '//xxx.com/asst/',
       },
     },
     st1: {
       remotes: {
-        asst: `asst@//st1-static.mingqijia.com/asst/asst/js/${VERSION}.remoteEntry.js?v=${VERSION}`,
+        asst: `asst@//xxx.com/asst/asst/js/${VERSION}.remoteEntry.js?v=${VERSION}`,
       },
       output: {
-        publicPath: '//st1-static.mingqijia.com/asst/',
+        publicPath: '//xxx.com/asst/',
       },
     },
 
