@@ -117,12 +117,6 @@ if (!isDev) {
       },
     ]),
     // new BundleAnalyzerPlugin({ analyzerPort: 8919 }),
-    new webpack.LoaderOptionsPlugin({
-      // test: /\.xxx$/, // may apply this only for some modules
-      options: {
-        productionSourceMap: false,
-      },
-    }),
   ];
 } else {
   plugins = [...plugins, new webpack.HotModuleReplacementPlugin()];

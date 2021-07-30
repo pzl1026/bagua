@@ -1,6 +1,6 @@
 {
   "name": "bagua-cli",
-  "version": "0.2.19",
+  "version": "0.2.20",
   "author": "pzl",
   "bin": {
     "bagua-cli": "bin/index.js"
