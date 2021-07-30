@@ -6,7 +6,7 @@ const projectConfig = require(helper.resolve('.bagua'));
 const port = projectConfig.serverStaticPort;
 
 // $ GET /
-app.use(serve(helper.resolve(projectConfig.staticDir)));
+app.use(serve(helper.resolve(projectConfig.assetsDir)));
 
 app.listen(port);
 
